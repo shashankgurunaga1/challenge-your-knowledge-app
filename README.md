@@ -201,47 +201,47 @@ Table information:
 	 
 	 # the check is made by checking username is None
 	 
-	 if( username is None):
-                global file3 
-                file3 = Menu(menubar, tearoff = 0) 
-                menubar.add_cascade(label ='Login/Register', menu = file3) 
-                file3.add_command(label ='Register', command = register_form) 
-                file3.add_command(label ='Login', command = login_form) 
-                file3.add_separator() 
-                file3.add_command(label ='Exit', command = main_root.quit) 
-		
-        # once the user is logged in , username will be not None 
-	
-        # here username is a global variable , used in different functions 
-	
-      elif ( username is not None) : 
-	
-                # delete the login submenu so the user cant try relogin or reregister once logged in 
-		
-                file3.delete(0,END)
+			 if( username is None):
+				global file3 
+				file3 = Menu(menubar, tearoff = 0) 
+				menubar.add_cascade(label ='Login/Register', menu = file3) 
+				file3.add_command(label ='Register', command = register_form) 
+				file3.add_command(label ='Login', command = login_form) 
+				file3.add_separator() 
+				file3.add_command(label ='Exit', command = main_root.quit) 
 
-                # Display Play game menu  
-		
-                file = Menu(menubar, tearoff = 0) 
-                menubar.add_cascade(label ='Play Game', menu = file) 
-                file.add_command(label ='Start', command = play_game_functon) 
-                file.add_separator() 
-                file.add_command(label ='Exit', command = main_root.quit) 
+			# once the user is logged in , username will be not None 
 
-                # Display Reward menu 
-		
-                file1 = Menu(menubar, tearoff = 0) 
-                menubar.add_cascade(label ='Reward', menu = file1) 
-                file1.add_command(label ='Purchase Product', command=purchase_module)
-                file1.add_separator() 
+			# here username is a global variable , used in different functions 
 
-       # if user is admim , display admin module also
-       
-        if (username =='admin'):
-                file2 = Menu(menubar, tearoff = 0) 
-                menubar.add_cascade(label ='Admin Module', menu = file2) 
-                file2.add_command(label ='Add Record', command = insert_question_form) 
-                file2.add_separator() 
+			elif ( username is not None) : 
+
+				# delete the login submenu so the user cant try relogin or reregister once logged in 
+
+				file3.delete(0,END)
+
+				# Display Play game menu  
+
+				file = Menu(menubar, tearoff = 0) 
+				menubar.add_cascade(label ='Play Game', menu = file) 
+				file.add_command(label ='Start', command = play_game_functon) 
+				file.add_separator() 
+				file.add_command(label ='Exit', command = main_root.quit) 
+
+				# Display Reward menu 
+
+				file1 = Menu(menubar, tearoff = 0) 
+				menubar.add_cascade(label ='Reward', menu = file1) 
+				file1.add_command(label ='Purchase Product', command=purchase_module)
+				file1.add_separator() 
+
+			 # if user is admim , display admin module also
+
+			 if (username =='admin'):
+				file2 = Menu(menubar, tearoff = 0) 
+				menubar.add_cascade(label ='Admin Module', menu = file2) 
+				file2.add_command(label ='Add Record', command = insert_question_form) 
+				file2.add_separator() 
 
 ################################
 Main UI in tkinter
