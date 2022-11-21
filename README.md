@@ -178,15 +178,16 @@ Table information:
 
 
 
-Module Wise Analysis 
+# Module Wise Analysis #
 A. Launch the application 
 
      Input: Nothing specific (just run the python program) 
      Output: Application launched with registration and login menu
      List of datafiles/database: None 
      Code: 
+     
 #######################################
-# Menu load based on username #######
+ Menu load based on username 
 #######################################
 
 
@@ -196,9 +197,7 @@ A. Launch the application
 
 def menu_load(username):
 
-          
-	  
-	  # if first time the application is loaded , it will only show login and register menu 
+          # if first time the application is loaded , it will only show login and register menu 
 	  
           # the check is made by checking username is None
 	  
