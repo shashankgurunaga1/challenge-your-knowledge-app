@@ -152,29 +152,30 @@ Table information:
 d)	Table name: questions1 
 Description: Stores the MCQ questions with 3 options and correct answer 
 Table information: 
-Field	Type	Extra
-Q_no	int	Question_no is primary and not null 
-Q_level	int	Question level can be 1 ,2 ,3 based on difficulty
-Question_desc	Varchar(1000)	Question description 
-Opt_a	Varchar(500)	 First option for answer in MCQ
-Opt_b	Varchar(500)	 First option for answer in MCQ
-Opt_c	Varchar(500)	 First option for answer in MCQ
-ans	Varchar(500)	Contain the correct answer
+|Field	|Type	|Extra|
+| :---: | :---: | :---: |
+|Q_no	|int	|Question_no is primary and not null |
+|Q_level	|int	|Question level can be 1 ,2 ,3 based on difficulty|
+|Question_desc	|Varchar(1000)	|Question description |
+|Opt_a	|Varchar(500)	 |First option for answer in MCQ|
+|Opt_b	|Varchar(500)	 |First option for answer in MCQ|
+|Opt_c	|Varchar(500)	| First option for answer in MCQ|
+|ans	|Varchar(500)	|Contain the correct answer|
 
 a)	Table name: questions_attempted
 Description: Stores the questions attempted by user so that next time they are not repeated 
 Table information: 
-Field	Type	Extra
-Username 	int	Primary key , not null and also Foreign key of username from user_profile table  
+|Field	|Type	|Extra|
+|:---:|:---:|:---:|
+|Username 	|int	|Primary key , not null and also Foreign key of username from user_profile table  |
 
-Q_level	int	Question level can be 1 ,2 ,3 based on difficulty
-Attempt_no	int	Capture the user attempt number  
-Q1	int	Stores the first question id out of the 5 questions attempted by user
-Q2	int	 Stores the second question id out of the 5 questions attempted by user
-Q3	int	Stores the third question id out of the 5 questions attempted by user
-Q4	int	Stores the fourth question id out of the 5 questions attempted by user
-Q5	int	Stores the fifth question id out of the 5 questions attempted by user
-
+|Q_level	|int	|Question level can be 1 ,2 ,3 based on difficulty|
+|Attempt_no	|int	|Capture the user attempt number  |
+|Q1	|int	|Stores the first question id out of the 5 questions attempted by user|
+|Q2	|int	 |Stores the second question id out of the 5 questions attempted by user|
+|Q3	|int	|Stores the third question id out of the 5 questions attempted by user|
+|Q4	|int	|Stores the fourth question id out of the 5 questions attempted by user|
+|Q5	|int	|Stores the fifth question id out of the 5 questions attempted by user|
 
 
 
