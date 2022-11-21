@@ -186,6 +186,8 @@ A. Launch the application
 
 
 
+
+
 def menu_load(username):
 
           # if first time the application is loaded , it will only show login and register menu 
