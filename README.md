@@ -120,12 +120,16 @@ Below is the list of the tables used in this application.
 a)	Table name: user_profile 
 Description: Stores the user information.
 Table information: 
-Field	Type	Comments
-username	Varchar(100)	This column is primary and not null
-email	Varchar(255)	Email id  for the user
-gender	Varchar(6)	Gender of the user
-age	int	Age of the user
-password	Varchar(100)	Password of the user 
+
+| Field | Type | Comments   |
+| :---: | :---: | :---:|
+| username | Varchar(100) | This column is primary and not null |
+| email	| Varchar(255) | Email id  for the user |
+|gender | Varchar(6) | Gender of the user |
+|age | int | Age of the user |
+|password | Varchar(100) | Password of the user |
+ 
+
 
 
 b)	Table name: catalogue 
