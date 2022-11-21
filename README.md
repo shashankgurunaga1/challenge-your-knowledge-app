@@ -195,10 +195,13 @@ A. Launch the application
 
 
 
-def menu_load(username):
-          # if first time the application is loaded , it will only show login and register menu 
-	  # the check is made by checking username is None
-	  if( username is None):
+         def menu_load(username):
+         
+	 # if first time the application is loaded , it will only show login and register menu 
+	 
+	 # the check is made by checking username is None
+	 
+	 if( username is None):
                 global file3 
                 file3 = Menu(menubar, tearoff = 0) 
                 menubar.add_cascade(label ='Login/Register', menu = file3) 
@@ -206,13 +209,19 @@ def menu_load(username):
                 file3.add_command(label ='Login', command = login_form) 
                 file3.add_separator() 
                 file3.add_command(label ='Exit', command = main_root.quit) 
+		
         # once the user is logged in , username will be not None 
+	
         # here username is a global variable , used in different functions 
+	
         elif ( username is not None) : 
+	
                 # delete the login submenu so the user cant try relogin or reregister once logged in 
+		
                 file3.delete(0,END)
 
                 # Display Play game menu  
+		
                 file = Menu(menubar, tearoff = 0) 
                 menubar.add_cascade(label ='Play Game', menu = file) 
                 file.add_command(label ='Start', command = play_game_functon) 
@@ -220,6 +229,7 @@ def menu_load(username):
                 file.add_command(label ='Exit', command = main_root.quit) 
 
                 # Display Reward menu 
+		
                 file1 = Menu(menubar, tearoff = 0) 
                 menubar.add_cascade(label ='Reward', menu = file1) 
                 file1.add_command(label ='Purchase Product', command=purchase_module)
@@ -233,7 +243,7 @@ def menu_load(username):
                 file2.add_separator() 
 
 ################################
-#Main UI in tkinter#
+Main UI in tkinter
 ####################################
 
 global username
