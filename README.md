@@ -168,7 +168,6 @@ Table information:
 |Field	|Type	|Extra|
 |:---:|:---:|:---:|
 |Username 	|int	|Primary key , not null and also Foreign key of username from user_profile table  |
-
 |Q_level	|int	|Question level can be 1 ,2 ,3 based on difficulty|
 |Attempt_no	|int	|Capture the user attempt number  |
 |Q1	|int	|Stores the first question id out of the 5 questions attempted by user|
