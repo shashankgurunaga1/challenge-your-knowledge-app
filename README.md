@@ -1167,18 +1167,22 @@ def product_availability_based_on_currency(username,productid):
 
 Sample output: 
 Case 1: Pre purchase , display the product to purchase , and gives option to enter product id to purchase the corresponding product 
+![image](https://user-images.githubusercontent.com/98585901/203064744-a07c4910-e4e6-4a4a-8075-08c3b4137d0a.png)
 
  
 
 Post successful purchase , the user will be displayed with updated currency and a purchase confirmation message
- 
+ ![image](https://user-images.githubusercontent.com/98585901/203064806-5cfe7f66-c1b3-44d8-931e-07a55fdf0c3c.png)
+
 
 Case 2 : If product id does not exist user will be prompted with the message that Product id does not exist to purchase
+![image](https://user-images.githubusercontent.com/98585901/203064871-0cbfbcb2-d2be-408a-92e7-6c0473e7801b.png)
 
  
 
 Case3 : If user does not have enough money to purchase, user will be prompted with the message that You don’t have enough money to purchase
- 
+ ![image](https://user-images.githubusercontent.com/98585901/203064934-aabebbe2-0e25-47da-8307-881ffee8f534.png)
+
 
 F .  Admin Module 
 Input: user should login as admin  
@@ -1321,6 +1325,7 @@ def  onclick1_insert_data(event):
 
 
 Sample output 
+![image](https://user-images.githubusercontent.com/98585901/203065026-10b1107a-58b5-4697-baba-d9fe410b96e6.png)
 
  
 
@@ -1328,6 +1333,7 @@ Sample output
 Message for successful record insertion 
 
 
+![image](https://user-images.githubusercontent.com/98585901/203065195-ef5b36a5-c949-40d0-a0cb-68710e84b7f0.png)
 
  
 
