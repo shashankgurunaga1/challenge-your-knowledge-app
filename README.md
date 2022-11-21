@@ -21,13 +21,18 @@ ii.	All other menus will be hidden and they only will appear based on successful
 
 b)	Role based Menu display 
 o	If the user is standard user, on successful login, he /she will get two menus to choose from – Play the Quiz and also Purchase based on the coins he has in his account
+
 o	If the user is admin –he additionally gets another menu to insert new quiz questions in the database
+
 o	Upon successful login, the username is tracked in the entire session and login/registration menu gets disabled to avoid accidental re-login which could lose his session.
 
 c)	Registration Module
 o	This module asks first time user to enter important information like username, email, gender, password, age. 
+
 o	On successful validation of the above entries, the application stores the user information in the database
+
 o	Also, upon registration, 500 points are awarded to the first-time user. 
+
 o	Error handling/Validation: 
 i.	Username cannot be blank – shows *mandatory on screen next to username entry box. 
 ii.	Password cannot be blank - shows *mandatory on screen next to password entry box. 
