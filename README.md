@@ -71,7 +71,8 @@ Block Diagram
 
 
 
-<img width="96" alt="image" src="https://user-images.githubusercontent.com/98585901/203063131-ce1b3722-c582-455b-8e32-4cde8eeb2f22.png">
+<img width="538" alt="image" src="https://user-images.githubusercontent.com/98585901/203067383-507925bd-a1cb-4505-8e06-e66ca94335a3.png">
+
 
 
 
