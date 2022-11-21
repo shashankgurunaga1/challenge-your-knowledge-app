@@ -178,8 +178,8 @@ Table information:
 
 
 
-# Module Wise Analysis #
-A. Launch the application 
+## Module Wise Analysis ##
+# A. Launch the application #
 
      Input: Nothing specific (just run the python program) 
      Output: Application launched with registration and login menu
@@ -248,39 +248,40 @@ Main UI in tkinter
 ####################################
 
 
-global username
-username = None 
+			global username
+			username = None 
 
 # create root window
 
-main_root = Tk()
-main_root.title("Challenge Your Knowledge")
-main_root.geometry("1200x800")
+		main_root = Tk()
+		main_root.title("Challenge Your Knowledge")
+		main_root.geometry("1200x800")
 
-# create frame
+		create frame
 
-global frame
-frame=Frame(main_root,bg='grey')
-frame.place(relx=0.2,rely=0.2,relheight=0.6,relwidth=0.6)
+		global frame
 
-main_root.configure(bg='grey')
+		frame=Frame(main_root,bg='grey')
+		frame.place(relx=0.2,rely=0.2,relheight=0.6,relwidth=0.6)
+
+		main_root.configure(bg='grey')
 
 # menubar
 
-menubar = Menu(main_root)
+		menubar = Menu(main_root)
 
-main_root.config(menu = menubar) 
-global label,label100
-label = Label(main_root, text="Welcome to Challenge Your Knowledge App", font=('Times New Roman',  '60'), fg="black", bg="grey")
-label.place(relx = 0.5,  rely = 0.5, anchor = 's') 
-label100 = Label(main_root, text='New user select register from Menu else Select login', font=('Times New Roman',  '20'), fg="black", bg="grey")
-label100.place(relx = 0.5,  rely = 0.5, anchor = 'n') 
+		main_root.config(menu = menubar) 
+		global label,label100
+		label = Label(main_root, text="Welcome to Challenge Your Knowledge App", font=('Times New Roman',  '60'), fg="black", bg="grey")
+		label.place(relx = 0.5,  rely = 0.5, anchor = 's') 
+		label100 = Label(main_root, text='New user select register from Menu else Select login', font=('Times New Roman',  '20'), fg="black", bg="grey")
+		label100.place(relx = 0.5,  rely = 0.5, anchor = 'n') 
 # load menu
-menu_load(username)
+		menu_load(username)
        
  
 ## Destroy the window at the end 
-main_root.mainloop()
+		main_root.mainloop()
 
 Sample output:  
 ![image](https://user-images.githubusercontent.com/98585901/203063453-99334443-2175-40f6-bfc9-c467fa09c4af.png)
@@ -288,7 +289,7 @@ Sample output:
  
 
 
-B .  Registration Module
+# B .  Registration Module  #
 
 Input: Username, email, age, gender, password
 Output: 
@@ -302,53 +303,53 @@ Code:
 
 Function to create the registration window in tkinter
 ###################################################
-# Function to create registration  window using tkinter 
+Function to create registration  window using tkinter 
 ###################################################
-def register_form():
-        label.destroy()
-        label100.destroy()
+		def register_form():
+			label.destroy()
+			label100.destroy()
 
-        clearFrame()
-        global root1
-        root1 =frame
-        # label to display the heading "registration form"
-        label_reg_0 = Label(root1, text="Registration form",width=20,font=("bold", 40),bg='grey', fg="white")
-        label_reg_0.place(x=90,y=53)
-        # label to display the word username
-        label_reg_1 = Label(root1, text="*Username",width=20,font=("bold", 20),bg='grey', fg="white")
-        label_reg_1.place(x=70,y=130)
-        # entry box to get the input for username as given by user during registration 
-        global entry_reg_1
-        entry_reg_1 = Entry(root1,width=20,bg='grey', fg="white")
-        entry_reg_1.place(x=300,y=130)
-        label_reg_2 = Label(root1, text="Email",width=20,font=("bold", 20),bg='grey', fg="white")
-        label_reg_2.place(x=68,y=180)
-        global entry_reg_2
-        entry_reg_2 = Entry(root1,width=20,bg='grey', fg="white")
-        entry_reg_2.place(x=300,y=180)
-        label_reg_3 = Label(root1, text="Gender",width=20,font=("bold", 20),bg='grey', fg="white")
-        label_reg_3.place(x=70,y=230)
-        global var
-        var = IntVar()
-        r1= Radiobutton(root1, text="Male",padx = 5, variable=var, value=1)
-        r1.place(x=300,y=230)
-        r2=Radiobutton(root1, text="Female",padx = 20, variable=var, value=2)
-        r2.place(x=370,y=230)
-        label__reg_4 = Label(root1, text="Age:",width=20,font=("bold", 20),bg='grey', fg="white")
-        label__reg_4.place(x=70,y=280)
-        global entry_reg_4
-        entry_reg_4 = Entry(root1,width=20,bg='grey', fg="white")
-        entry_reg_4.place(x=300,y=280)
+			clearFrame()
+			global root1
+			root1 =frame
+			# label to display the heading "registration form"
+			label_reg_0 = Label(root1, text="Registration form",width=20,font=("bold", 40),bg='grey', fg="white")
+			label_reg_0.place(x=90,y=53)
+			# label to display the word username
+			label_reg_1 = Label(root1, text="*Username",width=20,font=("bold", 20),bg='grey', fg="white")
+			label_reg_1.place(x=70,y=130)
+			# entry box to get the input for username as given by user during registration 
+			global entry_reg_1
+			entry_reg_1 = Entry(root1,width=20,bg='grey', fg="white")
+			entry_reg_1.place(x=300,y=130)
+			label_reg_2 = Label(root1, text="Email",width=20,font=("bold", 20),bg='grey', fg="white")
+			label_reg_2.place(x=68,y=180)
+			global entry_reg_2
+			entry_reg_2 = Entry(root1,width=20,bg='grey', fg="white")
+			entry_reg_2.place(x=300,y=180)
+			label_reg_3 = Label(root1, text="Gender",width=20,font=("bold", 20),bg='grey', fg="white")
+			label_reg_3.place(x=70,y=230)
+			global var
+			var = IntVar()
+			r1= Radiobutton(root1, text="Male",padx = 5, variable=var, value=1)
+			r1.place(x=300,y=230)
+			r2=Radiobutton(root1, text="Female",padx = 20, variable=var, value=2)
+			r2.place(x=370,y=230)
+			label__reg_4 = Label(root1, text="Age:",width=20,font=("bold", 20),bg='grey', fg="white")
+			label__reg_4.place(x=70,y=280)
+			global entry_reg_4
+			entry_reg_4 = Entry(root1,width=20,bg='grey', fg="white")
+			entry_reg_4.place(x=300,y=280)
 
-        label__reg_5= Label(root1, text="*Password:",width=20,font=("bold", 20),bg='grey', fg="white")
-        label__reg_5.place(x=70,y=310)
-        global entry_reg_5
-        entry_reg_5 = Entry(root1,width=20,bg='grey', fg="white")
-        entry_reg_5.place(x=300,y=310)
+			label__reg_5= Label(root1, text="*Password:",width=20,font=("bold", 20),bg='grey', fg="white")
+			label__reg_5.place(x=70,y=310)
+			global entry_reg_5
+			entry_reg_5 = Entry(root1,width=20,bg='grey', fg="white")
+			entry_reg_5.place(x=300,y=310)
 
-        btn1=Button(root1, text='Submit', width=20,bg='yellow', fg='red')
-        btn1.place(x=180,y=380)
-        btn1.bind('<Button-1>', onclick1_register)
+			btn1=Button(root1, text='Submit', width=20,bg='yellow', fg='red')
+			btn1.place(x=180,y=380)
+			btn1.bind('<Button-1>', onclick1_register)
 
 
 
@@ -425,7 +426,7 @@ def onclick1_register(event):
 
 
 
-Sample output: 
+# Sample output: 
 
 Case 1: 
 •	All the entries are validated successfully 
@@ -460,7 +461,7 @@ Case 4:
 ![image](https://user-images.githubusercontent.com/98585901/203063797-b1010f9c-155b-4401-a367-ae9f5615cb3f.png)
 
 
-C .  Login Module 
+# C .  Login Module #
 Input: Username, password
 Output: 
 o	All inputs are valid and authenticated. 
@@ -474,7 +475,7 @@ List of database tables used in this module:
 Code: 
 Function to create login form 
 ####################################################
-# Function to create login window using Tkinter 
+Function to create login window using Tkinter 
 ###################################################
 def login_form():
         # tkinter login form 
