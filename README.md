@@ -135,18 +135,19 @@ Table information:
 b)	Table name: catalogue 
 Description: Store the product details that are available for purchase using reward points
 Table information: 
-Field	Type	Comments              
-Product_id	int	Product_id  is the primary and not null
-Product_desc	Varchar(255)	Stores product description
-Coins_required	int	Coins required to purchase each product
+| Field | Type | Comments  | 
+| :---: | :---: | :---: |
+|Product_id | int | Product_id  is the primary and not null |
+|Product_desc | Varchar(255) | Stores product description |
+|Coins_required | int |  Coins required to purchase each product |
 
 c)	Table name: currency 
 Description: Store the currency for user 
 Table information: 
-Field	Type	Extra
-username	Varchar(100)	Foreign key of username from user_profile table  .
-This field is primary and not null for this table 
-coins	int	Coins that user has 
+|Field	|Type |	Extra |
+| :---: | :---: | :---: |
+|username|Varchar(100)| Foreign key of username from user_profile table  This field is primary and not null for this table| 
+|coins|int|Coins that user has 
 
 d)	Table name: questions1 
 Description: Stores the MCQ questions with 3 options and correct answer 
