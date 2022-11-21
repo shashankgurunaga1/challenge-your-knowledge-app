@@ -184,9 +184,14 @@ A. Launch the application
 # Menu load based on username #######
 #######################################
 
+
+
 def menu_load(username):
-        # if first time the application is loaded , it will only show login and register menu 
-        # the check is made by checking username is None 
+
+          # if first time the application is loaded , it will only show login and register menu 
+	  
+          # the check is made by checking username is None
+	  
         if( username is None):
                 global file3 
                 file3 = Menu(menubar, tearoff = 0) 
