@@ -18,10 +18,12 @@ o	Launch the application by running the python program
 o	Error handling/Validation: 
 i.	First time, when you launch the project, you will be only given login/register menu.
 ii.	All other menus will be hidden and they only will appear based on successful login authentication.
+
 b)	Role based Menu display 
 o	If the user is standard user, on successful login, he /she will get two menus to choose from – Play the Quiz and also Purchase based on the coins he has in his account
 o	If the user is admin –he additionally gets another menu to insert new quiz questions in the database
 o	Upon successful login, the username is tracked in the entire session and login/registration menu gets disabled to avoid accidental re-login which could lose his session.
+
 c)	Registration Module
 o	This module asks first time user to enter important information like username, email, gender, password, age. 
 o	On successful validation of the above entries, the application stores the user information in the database
@@ -49,6 +51,7 @@ o	In Quiz wizard, user will be given  max 5 MCQs in a single UI screen with 3 op
 o	If the questions are already attempted by User, then they will not be coming again 
 o	At the end of submission, it will show the number of correct questions and also will award 10 coins for each correct question.
 o	It will also show the total coins in user account.
+
 f)	Reward Module
 o	In the reward / purchase module, user can buy the product available using his coins 
 o	The available product will be displayed at the top along with the number of coins required to purchase them 
