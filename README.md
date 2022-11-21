@@ -195,7 +195,7 @@ A. Launch the application
 
 
 
-         def menu_load(username):
+        def menu_load(username):
          
 	 # if first time the application is loaded , it will only show login and register menu 
 	 
@@ -214,7 +214,7 @@ A. Launch the application
 	
         # here username is a global variable , used in different functions 
 	
-        elif ( username is not None) : 
+      elif ( username is not None) : 
 	
                 # delete the login submenu so the user cant try relogin or reregister once logged in 
 		
@@ -236,6 +236,7 @@ A. Launch the application
                 file1.add_separator() 
 
        # if user is admim , display admin module also
+       
         if (username =='admin'):
                 file2 = Menu(menubar, tearoff = 0) 
                 menubar.add_cascade(label ='Admin Module', menu = file2) 
@@ -246,15 +247,18 @@ A. Launch the application
 Main UI in tkinter
 ####################################
 
+
 global username
 username = None 
 
 # create root window
+
 main_root = Tk()
 main_root.title("Challenge Your Knowledge")
 main_root.geometry("1200x800")
 
 # create frame
+
 global frame
 frame=Frame(main_root,bg='grey')
 frame.place(relx=0.2,rely=0.2,relheight=0.6,relwidth=0.6)
@@ -262,6 +266,7 @@ frame.place(relx=0.2,rely=0.2,relheight=0.6,relwidth=0.6)
 main_root.configure(bg='grey')
 
 # menubar
+
 menubar = Menu(main_root)
 
 main_root.config(menu = menubar) 
