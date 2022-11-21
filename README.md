@@ -71,6 +71,7 @@ Block Diagram
 
 
 
+<img width="96" alt="image" src="https://user-images.githubusercontent.com/98585901/203063131-ce1b3722-c582-455b-8e32-4cde8eeb2f22.png">
 
 
 
@@ -250,6 +251,7 @@ menu_load(username)
 main_root.mainloop()
 
 Sample output:  
+![image](https://user-images.githubusercontent.com/98585901/203063453-99334443-2175-40f6-bfc9-c467fa09c4af.png)
 
  
 
@@ -398,7 +400,8 @@ Case 1:
 •	User gets the message: Registration successful 
 
 
- 
+ ![image](https://user-images.githubusercontent.com/98585901/203063596-8ae6d87d-6b1c-4490-b469-5d9fd5820463.png)
+
 
 
 
@@ -406,12 +409,14 @@ Case 1:
 •	If username or password field is empty: 
 •	The word Mandatory is displayed in the screen next to username/password in red on the screen 
 
- 
+ ![image](https://user-images.githubusercontent.com/98585901/203063676-5c2f7863-4dd2-4f40-baf2-f8d65c8687d5.png)
+
 
 
  Case 3: 
 •	If a non-integer value is entered in age field
 •	A message is prompt in red next to age field saying it would be integer 
+![image](https://user-images.githubusercontent.com/98585901/203063728-0f567ecc-1363-4c1f-9291-a67343bae37a.png)
 
  
 
@@ -420,6 +425,7 @@ Case 4:
 •	A message is prompt in red saying Username Exists 
 
  
+![image](https://user-images.githubusercontent.com/98585901/203063797-b1010f9c-155b-4401-a367-ae9f5615cb3f.png)
 
 
 C .  Login Module 
@@ -529,22 +535,27 @@ Case 1: Valid username and password entered
               User will be taken to quiz wizard on successful authentication 
  
 
- 
+ ![image](https://user-images.githubusercontent.com/98585901/203063975-fe391609-a09c-4303-9320-8fc6905a6735.png)
+![image](https://user-images.githubusercontent.com/98585901/203064045-a5986a1b-4950-48d5-ae2e-97c7e93ee3bd.png)
+
 
 
  
 
 Case 2 : When username and password are blank, user will be prompted with field mandatory notification 
- 
+ ![image](https://user-images.githubusercontent.com/98585901/203064091-9bcc24d4-f67f-4933-b252-f5d2e94d9c79.png)
+
 
 Case 2: When username does not exist in the database
                User will be prompted with Username does not exist message
  
+![image](https://user-images.githubusercontent.com/98585901/203064141-bbc37eb7-62d9-4d8a-864a-06eb8f55bcb8.png)
 
 Case 3: When username is valid but password does not match 
                User will be prompted with Password does not match message
 
- 
+ ![image](https://user-images.githubusercontent.com/98585901/203064179-ae8df918-60a3-4268-b4e0-907609b9b5eb.png)
+
                
 
 D .  Play Module
@@ -924,10 +935,12 @@ def update_currency_or_coin_post_purchase(username,money):
 
 Sample output: 
 
- 
+ ![image](https://user-images.githubusercontent.com/98585901/203064349-1bccacd1-75b3-418d-9484-8d1619a816ef.png)
+
 
 When no more un-attempted questions left 
- 
+ ![image](https://user-images.githubusercontent.com/98585901/203064404-31df1831-828a-4568-9630-6d4e3a833589.png)
+
 
 
 E .  Reward Module 
