@@ -599,7 +599,7 @@ Case 3: When username is valid but password does not match
 
                
 
-#D .  Play Module#
+# D .  Play Module #
 
 Input: None
 Output: 
@@ -620,55 +620,56 @@ Code:
 # Function for Play game 
 ########################################################################
 
-def play_game_functon():
-        # passing the question_level 
-        query_qids_not_attempted_by_user(1)
+		def play_game_functon():
+			# passing the question_level 
+			query_qids_not_attempted_by_user(1)
 
 #########################################################################
 #  Function to get question ids  not attempted by user previously
 ##########################################################################
-def query_qids_not_attempted_by_user(q_level):
+		def query_qids_not_attempted_by_user(q_level):
 
-            # clear the frame and destroy the first screen labels
-            label.destroy()
-            label100.destroy()
+			    # clear the frame and destroy the first screen labels
+			    label.destroy()
+			    label100.destroy()
 
-            clearFrame()
-            global root1_play
-            root1_play =frame
+			    clearFrame()
+			    global root1_play
+			    root1_play =frame
 
-            # check for question nos that are not attempted . This query will give all the questions id that are still not attempted by user
-            items_qids=[]
-            global str_qno
-            str_qno =""
-            mycursor = mydb.cursor(prepared=True)
-         
-            sql_query_q= "select * from questions1 where q_level =%s and qno_no not in (select q1 from questions_attempted where username=%s union select q2 from questions_attempted where username=%s union select q3 from questions_attempted where username=%s union select q4 from questions_attempted where username=%s union select q5 from questions_attempted where username=%s)"
-            mycursor.execute(sql_query_q,(str(q_level),str(username),str(username),str(username),str(username),str(username)))
-            count=0
-            for row in mycursor:
-                  item =(
-                        row[0]
-                        )      
-            
-                  # add the question nos retrieved from table that are unattmpted in variable str_qno 
-                  str_qno = str_qno + str(item) + ","
+			    # check for question nos that are not attempted . This query will give all the questions id that are still not attempted by user
+			    items_qids=[]
+			    global str_qno
+			    str_qno =""
+			    mycursor = mydb.cursor(prepared=True)
 
-            # if no questions are left to try , display the same message
-            if (str_qno ==""):
-                  label_reg_0 = Label(root1_play, text="No quiz questions left to take" ,font=("bold", 30),bg='grey', fg="pink")
-                  label_reg_0.place(x=90,y=100)
-            
-            else:
-                  str_qno = str_qno[:-1]
-                  ### the below function will get the questions details based on question nos not attempted by user so far
-            
-                  play_game_get_questions_not_attempted(q_level,str_qno)
+			    sql_query_q= "select * from questions1 where q_level =%s and qno_no not in (select q1 from questions_attempted where username=%s union select q2 from questions_attempted where username=%s union select q3 from questions_attempted where username=%s union select q4 from questions_attempted where username=%s union select q5 from questions_attempted where username=%s)"
+			    mycursor.execute(sql_query_q,(str(q_level),str(username),str(username),str(username),str(username),str(username)))
+			    count=0
+			    for row in mycursor:
+				  item =(
+					row[0]
+					)      
+
+				  # add the question nos retrieved from table that are unattmpted in variable str_qno 
+				  str_qno = str_qno + str(item) + ","
+
+			    # if no questions are left to try , display the same message
+			    if (str_qno ==""):
+				  label_reg_0 = Label(root1_play, text="No quiz questions left to take" ,font=("bold", 30),bg='grey', fg="pink")
+				  label_reg_0.place(x=90,y=100)
+
+			    else:
+				  str_qno = str_qno[:-1]
+				  ### the below function will get the questions details based on question nos not attempted by user so far
+
+				  play_game_get_questions_not_attempted(q_level,str_qno)
 
 ###############################################################################################
 #### Function to get questions details based on the question nos passed from the function query_qids_not_attempted_by_user
 #str_no contains the questions nos 
 ####################################################################################################
+
 			def   play_game_get_questions_not_attempted(q_level,str_qno):
 
 				    global que1 
@@ -998,6 +999,7 @@ Code:
 ####################################################################
 #function to design the purchase window 
 ######################################################################
+
 	def purchase_module():
 
 		label.destroy()
@@ -1141,6 +1143,8 @@ Python program to create a table to display the product catalogue data
 # Clicking on submit button in purchase module ###
 
 ###############################################
+
+
 		def onclick_purchase(event):
 			  product_availability_based_on_currency(username,str(e5.get()))
 
@@ -1225,7 +1229,7 @@ Case3 : If user does not have enough money to purchase, user will be prompted wi
  ![image](https://user-images.githubusercontent.com/98585901/203064934-aabebbe2-0e25-47da-8307-881ffee8f534.png)
 
 
-#F .  Admin Module #
+# F .  Admin Module #
 Input: user should login as admin  
 Output: 
 o	If the logged-in user is an admin, he will be getting an additional admin module to add new quiz questions
