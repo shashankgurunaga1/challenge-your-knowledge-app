@@ -305,6 +305,8 @@ Function to create the registration window in tkinter
 ###################################################
 Function to create registration  window using tkinter 
 ###################################################
+
+
 		def register_form():
 			label.destroy()
 			label100.destroy()
@@ -312,13 +314,17 @@ Function to create registration  window using tkinter
 			clearFrame()
 			global root1
 			root1 =frame
+			
 			# label to display the heading "registration form"
+			
 			label_reg_0 = Label(root1, text="Registration form",width=20,font=("bold", 40),bg='grey', fg="white")
 			label_reg_0.place(x=90,y=53)
 			# label to display the word username
+			
 			label_reg_1 = Label(root1, text="*Username",width=20,font=("bold", 20),bg='grey', fg="white")
 			label_reg_1.place(x=70,y=130)
 			# entry box to get the input for username as given by user during registration 
+			
 			global entry_reg_1
 			entry_reg_1 = Entry(root1,width=20,bg='grey', fg="white")
 			entry_reg_1.place(x=300,y=130)
@@ -357,76 +363,76 @@ Function to create registration  window using tkinter
 Function to validate registration information 
 
 
-def onclick1_register(event):
-        flag = 0
+			def onclick1_register(event):
+				flag = 0
 
-        # If username  value is not given then show it as mandatory so that the user can put the value again 
-        username =str(entry_reg_1.get())
-        if (len(username) == 0):
-              label_reg_11 = Label(root1, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-              label_reg_11.place(x=500,y=130)
-              flag=1
-        
-        # If email  value is not given it will take as None
-        email =str(entry_reg_2.get())
-        if (len(email) == 0):
-              email=None
-      
-        # If gender value is not given it will take as None
-        gender=str(var.get ())
-        if (len(gender) == 0):
-              gender=None
+				# If username  value is not given then show it as mandatory so that the user can put the value again 
+				username =str(entry_reg_1.get())
+				if (len(username) == 0):
+				      label_reg_11 = Label(root1, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+				      label_reg_11.place(x=500,y=130)
+				      flag=1
 
-        # If age value is not given it will take as None
-        age=str(entry_reg_4.get())
-        if (len(age) == 0):
-              age=0
-        else:
-                  # check whether integer value is given for age , else throw error
-                  try:
-                        age=int(age)
-                  except ValueError:
-                        label_reg_11 = Label(root1, text="*Should be Integer",width=20,font=("bold", 20),bg='grey', fg="red")
-                        label_reg_11.place(x=500,y=280)
-                        flag=1
+				# If email  value is not given it will take as None
+				email =str(entry_reg_2.get())
+				if (len(email) == 0):
+				      email=None
 
-        # If password  value is not given then show it as mandatory so that the user can put the value again                 
-        password =str(entry_reg_5.get())
-        if (len(password)== 0):
-              label_reg_11 = Label(root1, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-              label_reg_11.place(x=500,y=310)
-              flag=1
+				# If gender value is not given it will take as None
+				gender=str(var.get ())
+				if (len(gender) == 0):
+				      gender=None
 
-        mycursor = mydb.cursor(prepared=True)
-        
-    
-        # check if the username being inserted is already present
+				# If age value is not given it will take as None
+				age=str(entry_reg_4.get())
+				if (len(age) == 0):
+				      age=0
+				else:
+					  # check whether integer value is given for age , else throw error
+					  try:
+						age=int(age)
+					  except ValueError:
+						label_reg_11 = Label(root1, text="*Should be Integer",width=20,font=("bold", 20),bg='grey', fg="red")
+						label_reg_11.place(x=500,y=280)
+						flag=1
 
-        sql_query="select count(*) from user_profile  where username=%s"
-        mycursor.execute(sql_query,(str(username),))
-        for row in mycursor:
-            item_user =(
-              row[0]
-           )
-        ## if same usename already present in the database table , it will say Username Exists 
-        if ((item_user >0) and (flag==0)) :
-            label_reg_11 = Label(root1, text="Username Exists ",width=20,font=("bold", 20),bg='grey', fg="red")
-            label_reg_11.place(x=80,y=400)
-        elif ((item_user==0) and (flag==0)) :
-            sql ='insert into user_profile(username,email,gender, age,password) values(%s,%s,%s,%s,%s)'
-            mycursor.execute(sql,(str(username),str(email),str(gender),str(age), str(password)))
-            mydb.commit()
-            sql1 = "insert into currency(username,coins) values(%s,500)"
-            mycursor.execute(sql1,(str(username),))
-            mydb.commit()
-            label_reg_11 = Label(root1, text="Registration Successful ",width=20,font=("bold", 20),bg='grey', fg="red")
-            label_reg_11.place(x=80,y=400)
+				# If password  value is not given then show it as mandatory so that the user can put the value again                 
+				password =str(entry_reg_5.get())
+				if (len(password)== 0):
+				      label_reg_11 = Label(root1, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+				      label_reg_11.place(x=500,y=310)
+				      flag=1
+
+				mycursor = mydb.cursor(prepared=True)
+
+
+				# check if the username being inserted is already present
+
+				sql_query="select count(*) from user_profile  where username=%s"
+				mycursor.execute(sql_query,(str(username),))
+				for row in mycursor:
+				    item_user =(
+				      row[0]
+				   )
+				## if same usename already present in the database table , it will say Username Exists 
+				if ((item_user >0) and (flag==0)) :
+				    label_reg_11 = Label(root1, text="Username Exists ",width=20,font=("bold", 20),bg='grey', fg="red")
+				    label_reg_11.place(x=80,y=400)
+				elif ((item_user==0) and (flag==0)) :
+				    sql ='insert into user_profile(username,email,gender, age,password) values(%s,%s,%s,%s,%s)'
+				    mycursor.execute(sql,(str(username),str(email),str(gender),str(age), str(password)))
+				    mydb.commit()
+				    sql1 = "insert into currency(username,coins) values(%s,500)"
+				    mycursor.execute(sql1,(str(username),))
+				    mydb.commit()
+				    label_reg_11 = Label(root1, text="Registration Successful ",width=20,font=("bold", 20),bg='grey', fg="red")
+				    label_reg_11.place(x=80,y=400)
             
           
 
 
 
-# Sample output: 
+# Sample output: #
 
 Case 1: 
 •	All the entries are validated successfully 
@@ -510,58 +516,60 @@ Function to validate login information
 #Function to validate login  details 
 #########################################################
 
-def onclick1_login(event):
-        
-        
-        global username
-        # check if username filed is left blank , then  display the word "*mandatory" nect to username entry box in tkinter window
-        username =str(entry_reg_login_1.get())
-        if (len(username) == 0):
-              label_reg_log11= Label(root_login, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-              label_reg_log11.place(x=500,y=130)
+			def onclick1_login(event):
 
-        # check if password filed is left blank , then  display the word "*mandatory" nect to username entry box in tkinter window
-        password =str(entry_login_reg_5.get())
-        if (len(password)== 0):
-              label_reg_log12 = Label(root_login, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-              label_reg_log12.place(x=500,y=310)
 
-        mycursor = mydb.cursor(prepared=True)
-        
-    
-        # check if the username is present in the user_profile table for validation 
+				global username
+				# check if username filed is left blank , then  display the word "*mandatory" nect to username entry box in tkinter window
+				
+				username =str(entry_reg_login_1.get())
+				if (len(username) == 0):
+				      label_reg_log11= Label(root_login, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+				      label_reg_log11.place(x=500,y=130)
 
-        sql_query="select count(*) from user_profile  where username=%s"
-        mycursor.execute(sql_query,(str(username),))
-        for row in mycursor:
-            item =(
-              row[0]
-           )
-        # if username name is present in the sql table , retrieve th password from db table 
-        if (item >0):
-            sql_query="select password from user_profile  where username=%s"
-            mycursor.execute(sql_query,(str(username),))
-            for row in mycursor:
-                  password1 =(
-                  row[0]
-              )
-            # match the database password with user given password 
-            if (password == password1):
-                menu_load(username)
-                # is password matched , bring up the play game window
-                play_game_functon()
-            
-            # if password does not match with database entry , then promot Password does not match
-            else:
-                label_reg_log13 = Label(root_login, text="Password does not match  ",font=("bold", 20),bg='grey', fg="red")
-                label_reg_log13.place(x=80,y=410)
+				# check if password filed is left blank , then  display the word "*mandatory" nect to username entry box in tkinter window
+				password =str(entry_login_reg_5.get())
+				if (len(password)== 0):
+				      label_reg_log12 = Label(root_login, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+				      label_reg_log12.place(x=500,y=310)
 
-        # if username does not match with database, then prompt username does not exist  
-        elif (item==0):
-            label_reg_log13 = Label(root_login, text="Username does not exist ",font=("bold", 20),bg='grey', fg="red")
-            label_reg_log13.place(x=80,y=410)
+				mycursor = mydb.cursor(prepared=True)
 
-Sample Output: 
+
+				# check if the username is present in the user_profile table for validation 
+
+				sql_query="select count(*) from user_profile  where username=%s"
+				mycursor.execute(sql_query,(str(username),))
+				for row in mycursor:
+				    item =(
+				      row[0]
+				   )
+				# if username name is present in the sql table , retrieve th password from db table 
+				if (item >0):
+				    sql_query="select password from user_profile  where username=%s"
+				    mycursor.execute(sql_query,(str(username),))
+				    for row in mycursor:
+					  password1 =(
+					  row[0]
+				      )
+				    # match the database password with user given password 
+				    if (password == password1):
+					menu_load(username)
+					# is password matched , bring up the play game window
+					play_game_functon()
+
+				    # if password does not match with database entry , then promot Password does not match
+				    else:
+					label_reg_log13 = Label(root_login, text="Password does not match  ",font=("bold", 20),bg='grey', fg="red")
+					label_reg_log13.place(x=80,y=410)
+
+				# if username does not match with database, then prompt username does not exist  
+				elif (item==0):
+				    label_reg_log13 = Label(root_login, text="Username does not exist ",font=("bold", 20),bg='grey', fg="red")
+				    label_reg_log13.place(x=80,y=410)
+
+
+#Sample Output: 
 
 
 Case 1: Valid username and password entered          
@@ -591,7 +599,7 @@ Case 3: When username is valid but password does not match
 
                
 
-D .  Play Module
+#D .  Play Module#
 
 Input: None
 Output: 
@@ -661,253 +669,253 @@ def query_qids_not_attempted_by_user(q_level):
 #### Function to get questions details based on the question nos passed from the function query_qids_not_attempted_by_user
 #str_no contains the questions nos 
 ####################################################################################################
-def   play_game_get_questions_not_attempted(q_level,str_qno):
-            
-            global que1 
-            global que2
-            global que3
-            global que4
-            global que5
-            global que1_qno
-            global que2_qno
-            global que3_qno
-            global que4_qno
-            global que5_qno
+			def   play_game_get_questions_not_attempted(q_level,str_qno):
 
-            que1 = StringVar()
-            que2 = StringVar()
-            que3 = StringVar()
-            que4 = StringVar()
-            que5 = StringVar()
-            
-            # get the questions from questions table based on the questions number passed
-            mycursor = mydb.cursor()
-            
-            sql_query_q1= "select qno_no, qno_desc,opt_a,opt_b,opt_c from questions1 where q_level =%s and qno_no in " + "(" + str_qno +")"
+				    global que1 
+				    global que2
+				    global que3
+				    global que4
+				    global que5
+				    global que1_qno
+				    global que2_qno
+				    global que3_qno
+				    global que4_qno
+				    global que5_qno
 
-            mycursor.execute(sql_query_q1,(str(q_level),))
+				    que1 = StringVar()
+				    que2 = StringVar()
+				    que3 = StringVar()
+				    que4 = StringVar()
+				    que5 = StringVar()
 
-            label_reg_0 = Label(root1_play, text="Play Python Knowledge Challenge",font=("bold", 30),bg='grey', fg="pink")
-            label_reg_0.place(x=90,y=10)
+				    # get the questions from questions table based on the questions number passed
+				    mycursor = mydb.cursor()
 
-            # x_row and y_col is to position the components in tkinter
-            x_row =90
-            y_col =53
+				    sql_query_q1= "select qno_no, qno_desc,opt_a,opt_b,opt_c from questions1 where q_level =%s and qno_no in " + "(" + str_qno +")"
 
-            # counter to keep count of the questions 
-            i=0
-        
-            for row in mycursor:
-                  
-                  # display 5 questions using tkinter label. each row will contain details about single question like q_no, q_desc, options and answer 
-                  #row[1] – is question decrption
-                  
-                  var1 ="Question " + str(i+1) +": "+ str(row[1]) 
-                  x_row =50
-                  
-                  # radio buttons for the first question answers 
-                  if (i==0):
-                        label_reg_0 = Label(root1_play, text=var1,bg='grey', fg="yellow")
-                        label_reg_0.place(x=10,y=y_col)
-                        y_col =y_col+25
-                        que1_qno=row[0]
-                        r1= Radiobutton(root1_play, text=row[2],padx = 50, variable=que1, value=row[2])
-                        r1.place(x=x_row,y=y_col)
-                        r2=Radiobutton(root1_play, text=row[3],padx = 50, variable=que1, value=row[3])
-                        r2.place(x=x_row+150,y=y_col)
-                        r3=Radiobutton(root1_play, text=row[4],padx = 50, variable=que1, value=row[4])
-                        r3.place(x=x_row+300,y=y_col)
-                        y_col =y_col+25
+				    mycursor.execute(sql_query_q1,(str(q_level),))
 
-                  # radio buttons for the second question answers      
-                  elif(i==1):
-                        label_reg_0 = Label(root1_play, text=var1,bg='grey', fg="yellow")
-                        label_reg_0.place(x=10,y=y_col)
-                        y_col =y_col+25
-                        que2_qno=row[0]
-                        #que2 = StringVar()
-                        r1= Radiobutton(root1_play, text=row[2],padx = 50, variable=que2, value=row[2])
-                        r1.place(x=x_row,y=y_col)
-                        r2=Radiobutton(root1_play, text=row[3],padx = 50, variable=que2, value=row[3])
-                        r2.place(x=x_row+150,y=y_col)
-                        r3=Radiobutton(root1_play, text=row[4],padx = 50, variable=que2, value=row[4])
-                        r3.place(x=x_row+300,y=y_col)
-                        y_col =y_col+25
+				    label_reg_0 = Label(root1_play, text="Play Python Knowledge Challenge",font=("bold", 30),bg='grey', fg="pink")
+				    label_reg_0.place(x=90,y=10)
 
-                  # radio buttons for the third question answers  
-                  elif(i==2):
-                        label_reg_0 = Label(root1_play, text=var1,bg='grey', fg="yellow")
-                        label_reg_0.place(x=10,y=y_col)
-                        y_col =y_col+25
-                        que3_qno=row[0]
-                        #que3 = StringVar()
-                        r1= Radiobutton(root1_play, text=row[2],padx = 50, variable=que3, value=row[2])
-                        r1.place(x=x_row,y=y_col)
-                        r2=Radiobutton(root1_play, text=row[3],padx = 50, variable=que3, value=row[3])
-                        r2.place(x=x_row+150,y=y_col)
-                        r3=Radiobutton(root1_play, text=row[4],padx = 50, variable=que3, value=row[4])
-                        r3.place(x=x_row+300,y=y_col)
-                        y_col =y_col+25
+				    # x_row and y_col is to position the components in tkinter
+				    x_row =90
+				    y_col =53
 
-                  # radio buttons for the 4th question answers  
-                  elif(i==3):
-                        label_reg_0 = Label(root1_play, text=var1,bg='grey', fg="yellow")
-                        label_reg_0.place(x=10,y=y_col)
-                        y_col =y_col+25
-                        que4_qno=row[0]
-                        #que4 = StringVar()
-                        r1= Radiobutton(root1_play, text=row[2],padx = 50, variable=que4, value=row[2])
-                        r1.place(x=x_row,y=y_col)
-                        r2=Radiobutton(root1_play, text=row[3],padx = 50, variable=que4, value=row[3])
-                        r2.place(x=x_row+150,y=y_col)
-                        r3=Radiobutton(root1_play, text=row[4],padx = 50, variable=que4, value=row[4])
-                        r3.place(x=x_row+300,y=y_col)
-                        y_col =y_col+25
-                  
-                  # radio buttons for the fifth question answers  
-                  elif(i==4):
-                        label_reg_0 = Label(root1_play, text=var1,bg='grey', fg="yellow")
-                        label_reg_0.place(x=10,y=y_col)
-                        y_col =y_col+25
-                        que5_qno=row[0]
-                        #que5 = StringVar()
-                        r1= Radiobutton(root1_play, text=row[2],padx = 50, variable=que5, value=row[2])
-                        r1.place(x=x_row,y=y_col)
-                        r2=Radiobutton(root1_play, text=row[3],padx = 50, variable=que5, value=row[3])
-                        r2.place(x=x_row+150,y=y_col)
-                        r3=Radiobutton(root1_play, text=row[4],padx = 50, variable=que5, value=row[4])
-                        r3.place(x=x_row+300,y=y_col)
-                        y_col =y_col+25
+				    # counter to keep count of the questions 
+				    i=0
 
-                  
-                  i=i+1
-                  
-            
-            btn1=Button(root1_play, text='Submit', width=20,bg='yellow', fg='red')
-            btn1.place(x=180,y=350)
-            btn1.bind('<Button-1>', onclick1_play)
+				    for row in mycursor:
+
+					  # display 5 questions using tkinter label. each row will contain details about single question like q_no, q_desc, options and answer 
+					  #row[1] – is question decrption
+
+					  var1 ="Question " + str(i+1) +": "+ str(row[1]) 
+					  x_row =50
+
+					  # radio buttons for the first question answers 
+					  if (i==0):
+						label_reg_0 = Label(root1_play, text=var1,bg='grey', fg="yellow")
+						label_reg_0.place(x=10,y=y_col)
+						y_col =y_col+25
+						que1_qno=row[0]
+						r1= Radiobutton(root1_play, text=row[2],padx = 50, variable=que1, value=row[2])
+						r1.place(x=x_row,y=y_col)
+						r2=Radiobutton(root1_play, text=row[3],padx = 50, variable=que1, value=row[3])
+						r2.place(x=x_row+150,y=y_col)
+						r3=Radiobutton(root1_play, text=row[4],padx = 50, variable=que1, value=row[4])
+						r3.place(x=x_row+300,y=y_col)
+						y_col =y_col+25
+
+					  # radio buttons for the second question answers      
+					  elif(i==1):
+						label_reg_0 = Label(root1_play, text=var1,bg='grey', fg="yellow")
+						label_reg_0.place(x=10,y=y_col)
+						y_col =y_col+25
+						que2_qno=row[0]
+						#que2 = StringVar()
+						r1= Radiobutton(root1_play, text=row[2],padx = 50, variable=que2, value=row[2])
+						r1.place(x=x_row,y=y_col)
+						r2=Radiobutton(root1_play, text=row[3],padx = 50, variable=que2, value=row[3])
+						r2.place(x=x_row+150,y=y_col)
+						r3=Radiobutton(root1_play, text=row[4],padx = 50, variable=que2, value=row[4])
+						r3.place(x=x_row+300,y=y_col)
+						y_col =y_col+25
+
+					  # radio buttons for the third question answers  
+					  elif(i==2):
+						label_reg_0 = Label(root1_play, text=var1,bg='grey', fg="yellow")
+						label_reg_0.place(x=10,y=y_col)
+						y_col =y_col+25
+						que3_qno=row[0]
+						#que3 = StringVar()
+						r1= Radiobutton(root1_play, text=row[2],padx = 50, variable=que3, value=row[2])
+						r1.place(x=x_row,y=y_col)
+						r2=Radiobutton(root1_play, text=row[3],padx = 50, variable=que3, value=row[3])
+						r2.place(x=x_row+150,y=y_col)
+						r3=Radiobutton(root1_play, text=row[4],padx = 50, variable=que3, value=row[4])
+						r3.place(x=x_row+300,y=y_col)
+						y_col =y_col+25
+
+					  # radio buttons for the 4th question answers  
+					  elif(i==3):
+						label_reg_0 = Label(root1_play, text=var1,bg='grey', fg="yellow")
+						label_reg_0.place(x=10,y=y_col)
+						y_col =y_col+25
+						que4_qno=row[0]
+						#que4 = StringVar()
+						r1= Radiobutton(root1_play, text=row[2],padx = 50, variable=que4, value=row[2])
+						r1.place(x=x_row,y=y_col)
+						r2=Radiobutton(root1_play, text=row[3],padx = 50, variable=que4, value=row[3])
+						r2.place(x=x_row+150,y=y_col)
+						r3=Radiobutton(root1_play, text=row[4],padx = 50, variable=que4, value=row[4])
+						r3.place(x=x_row+300,y=y_col)
+						y_col =y_col+25
+
+					  # radio buttons for the fifth question answers  
+					  elif(i==4):
+						label_reg_0 = Label(root1_play, text=var1,bg='grey', fg="yellow")
+						label_reg_0.place(x=10,y=y_col)
+						y_col =y_col+25
+						que5_qno=row[0]
+						#que5 = StringVar()
+						r1= Radiobutton(root1_play, text=row[2],padx = 50, variable=que5, value=row[2])
+						r1.place(x=x_row,y=y_col)
+						r2=Radiobutton(root1_play, text=row[3],padx = 50, variable=que5, value=row[3])
+						r2.place(x=x_row+150,y=y_col)
+						r3=Radiobutton(root1_play, text=row[4],padx = 50, variable=que5, value=row[4])
+						r3.place(x=x_row+300,y=y_col)
+						y_col =y_col+25
+
+
+					  i=i+1
+
+
+				    btn1=Button(root1_play, text='Submit', width=20,bg='yellow', fg='red')
+				    btn1.place(x=180,y=350)
+				    btn1.bind('<Button-1>', onclick1_play)
 
 
 ######### As the user hits the submit buttion in play game page 
 ######## The following function will be called . 
 
-def  onclick1_play(event):
-      flag =0
-      global response1,response2,response3,response4,response5
+			def  onclick1_play(event):
+			      flag =0
+			      global response1,response2,response3,response4,response5
 
-      global correct_qno
-      correct_qno =""
-      
-      # check if user has answered all questions 
+			      global correct_qno
+			      correct_qno =""
 
-      # if one  or question is deplayed in the screen and first question is not answered 
-      if ((len(que1.get()) != 0) and (no_of_q >=1)):      
-            response1=str(que1.get())
-      elif (len(que1.get()) == 0):  
-            label_reg_111 = Label(root1_play, text="*All questions are Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-            label_reg_111.place(x=30,y=400)
-            flag=1
+			      # check if user has answered all questions 
 
-      # if  two  or question is deplayed in the screen and second question is not answered 
-      if ((len(que2.get()) != 0)and (no_of_q >=2)): 
-            response2=str(que2.get())
-      elif ((len(que2.get()) == 0) and (no_of_q >=2)):  
-            label_reg_111 = Label(root1_play, text="*All questions are Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-            label_reg_111.place(x=30,y=400)
-            flag=1
+			      # if one  or question is deplayed in the screen and first question is not answered 
+			      if ((len(que1.get()) != 0) and (no_of_q >=1)):      
+				    response1=str(que1.get())
+			      elif (len(que1.get()) == 0):  
+				    label_reg_111 = Label(root1_play, text="*All questions are Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+				    label_reg_111.place(x=30,y=400)
+				    flag=1
 
-      # if three  or question is deplayed in the screen and third question is not answered 
-      if ((len(que3.get()) != 0) and (no_of_q >=3)): 
-            response3=str(que3.get())
-      elif ((len(que3.get()) == 0) and (no_of_q >=3)):  
-            label_reg_111 = Label(root1_play, text="*All questions are Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-            label_reg_111.place(x=30,y=400)
-            flag=1
+			      # if  two  or question is deplayed in the screen and second question is not answered 
+			      if ((len(que2.get()) != 0)and (no_of_q >=2)): 
+				    response2=str(que2.get())
+			      elif ((len(que2.get()) == 0) and (no_of_q >=2)):  
+				    label_reg_111 = Label(root1_play, text="*All questions are Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+				    label_reg_111.place(x=30,y=400)
+				    flag=1
 
-      # if four  or question is deplayed in the screen and fourth question is not answered 
-      if ((len(que4.get()) != 0)  and (no_of_q >=4)): 
-            response4=str(que4.get())
-      elif ((len(que4.get()) == 0) and (no_of_q >=4)):
-              label_reg_111 = Label(root1_play, text="*All questions are Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-              label_reg_111.place(x=30,y=400)
-              flag=1
+			      # if three  or question is deplayed in the screen and third question is not answered 
+			      if ((len(que3.get()) != 0) and (no_of_q >=3)): 
+				    response3=str(que3.get())
+			      elif ((len(que3.get()) == 0) and (no_of_q >=3)):  
+				    label_reg_111 = Label(root1_play, text="*All questions are Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+				    label_reg_111.place(x=30,y=400)
+				    flag=1
 
-      # if five  or question is deplayed in the screen and fifth question is not answered         
-      if ((len(que5.get()) != 0) and (no_of_q >=5)): 
-            response5=str(que5.get())
-      elif ((len(que5.get()) == 0) and (no_of_q >=5)):
-              label_reg_111 = Label(root1_play, text="*All questions are Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-              label_reg_111.place(x=30,y=400)
-              flag=1
-      
-      
+			      # if four  or question is deplayed in the screen and fourth question is not answered 
+			      if ((len(que4.get()) != 0)  and (no_of_q >=4)): 
+				    response4=str(que4.get())
+			      elif ((len(que4.get()) == 0) and (no_of_q >=4)):
+				      label_reg_111 = Label(root1_play, text="*All questions are Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+				      label_reg_111.place(x=30,y=400)
+				      flag=1
 
-      global correct 
-      correct =0
+			      # if five  or question is deplayed in the screen and fifth question is not answered         
+			      if ((len(que5.get()) != 0) and (no_of_q >=5)): 
+				    response5=str(que5.get())
+			      elif ((len(que5.get()) == 0) and (no_of_q >=5)):
+				      label_reg_111 = Label(root1_play, text="*All questions are Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+				      label_reg_111.place(x=30,y=400)
+				      flag=1
 
-      # if user has answered all questions 
 
-      if (flag==0):
-            if (len(que1.get()) != 0): 
-                  #validate the first question response with the answer wtored in  database 
-                  correct = verify_question(correct_qno, correct,que1_qno,que1.get()) 
-                  str_qno1 =str(que1_qno) +","+ str(0)+","+ str(0)+","+ str(0)+","+ str(0)
 
-            if (len(que2.get()) != 0): 
-                  #validate the second question response with the answer wtored in  database 
-                  correct=verify_question(correct_qno,correct,que2_qno,que2.get())
-                  str_qno1 =str(que1_qno) + ","+ str(que2_qno) +","+ str(0)+","+ str(0)+","+ str(0)
+			      global correct 
+			      correct =0
 
-            if (len(que3.get()) != 0):
-                  #validate the third question response with the answer wtored in  database 
-                  correct= verify_question(correct_qno,correct,que3_qno,que3.get())
-                  str_qno1 =str(que1_qno) + ","+ str(que2_qno) + ","+ str(que3_qno)+","+ str(0)+","+ str(0)
+			      # if user has answered all questions 
 
-            if (len(que4.get()) != 0): 
-                  #validate the fourth  question response with the answer wtored in  database 
-                  correct= verify_question(correct_qno,correct,que4_qno,que4.get())
-                  str_qno1 =str(que1_qno) + ","+ str(que2_qno) + ","+ str(que3_qno)+","+ str(que4_qno)+","+ str(0)
-            if (len(que5.get()) != 0): 
-                  #validate the fifth question response with the answer wtored in  database  
-                  correct= verify_question(correct_qno,correct,que5_qno,que5.get())
-                  str_qno1 =str(que1_qno) + ","+ str(que2_qno) + ","+ str(que3_qno)+","+ str(que4_qno)+","+ str(que5_qno)
+			      if (flag==0):
+				    if (len(que1.get()) != 0): 
+					  #validate the first question response with the answer wtored in  database 
+					  correct = verify_question(correct_qno, correct,que1_qno,que1.get()) 
+					  str_qno1 =str(que1_qno) +","+ str(0)+","+ str(0)+","+ str(0)+","+ str(0)
 
-            ######## Display total correct anwser 
-            no_of_q_temp=0
-            if (no_of_q >5):
-                no_of_q_temp=5
-            elif (no_of_q <=5):
-                no_of_q_temp=no_of_q
-                
-            text34 = "Answered "+ str(correct) +" out of " +  str(no_of_q_temp) + " questions properly." 
+				    if (len(que2.get()) != 0): 
+					  #validate the second question response with the answer wtored in  database 
+					  correct=verify_question(correct_qno,correct,que2_qno,que2.get())
+					  str_qno1 =str(que1_qno) + ","+ str(que2_qno) +","+ str(0)+","+ str(0)+","+ str(0)
 
-            label_reg_11 = Label(root1_play, text=text34, font=("bold", 20),bg='grey', fg="yellow")
-            label_reg_11.place(x=50,y=375)
+				    if (len(que3.get()) != 0):
+					  #validate the third question response with the answer wtored in  database 
+					  correct= verify_question(correct_qno,correct,que3_qno,que3.get())
+					  str_qno1 =str(que1_qno) + ","+ str(que2_qno) + ","+ str(que3_qno)+","+ str(0)+","+ str(0)
 
-            # give 10 points for each corrected question 
-            points_earned = 10*correct
- 
-            #get current points of the user and add the points earned 
-            current_currency_ofuser= user_currency_coin_details(username)
+				    if (len(que4.get()) != 0): 
+					  #validate the fourth  question response with the answer wtored in  database 
+					  correct= verify_question(correct_qno,correct,que4_qno,que4.get())
+					  str_qno1 =str(que1_qno) + ","+ str(que2_qno) + ","+ str(que3_qno)+","+ str(que4_qno)+","+ str(0)
+				    if (len(que5.get()) != 0): 
+					  #validate the fifth question response with the answer wtored in  database  
+					  correct= verify_question(correct_qno,correct,que5_qno,que5.get())
+					  str_qno1 =str(que1_qno) + ","+ str(que2_qno) + ","+ str(que3_qno)+","+ str(que4_qno)+","+ str(que5_qno)
 
-            # add points earned 
-            new_point=points_earned + current_currency_ofuser
+				    ######## Display total correct anwser 
+				    no_of_q_temp=0
+				    if (no_of_q >5):
+					no_of_q_temp=5
+				    elif (no_of_q <=5):
+					no_of_q_temp=no_of_q
 
-            # disdplay the earned point to the user 
-            text35 = "You have earned " + str(points_earned)+ " new Points !"
-            label_reg_12 = Label(root1_play, text=text35, font=("bold", 20),bg='grey', fg="yellow")
-            label_reg_12.place(x=50,y=405)
+				    text34 = "Answered "+ str(correct) +" out of " +  str(no_of_q_temp) + " questions properly." 
 
-            # update new currency 
-            update_currency_or_coin_post_purchase(username,new_point)
+				    label_reg_11 = Label(root1_play, text=text34, font=("bold", 20),bg='grey', fg="yellow")
+				    label_reg_11.place(x=50,y=375)
 
-            #Display total points
-            text36 = "Your total points now " + str(new_point)
-            label_reg_12 = Label(root1_play, text=text36, font=("bold", 20),bg='grey', fg="yellow")
-            label_reg_12.place(x=50,y=435)
+				    # give 10 points for each corrected question 
+				    points_earned = 10*correct
 
-            #update attempt table
-            update_attempted_table(username, str_qno1)
+				    #get current points of the user and add the points earned 
+				    current_currency_ofuser= user_currency_coin_details(username)
+
+				    # add points earned 
+				    new_point=points_earned + current_currency_ofuser
+
+				    # disdplay the earned point to the user 
+				    text35 = "You have earned " + str(points_earned)+ " new Points !"
+				    label_reg_12 = Label(root1_play, text=text35, font=("bold", 20),bg='grey', fg="yellow")
+				    label_reg_12.place(x=50,y=405)
+
+				    # update new currency 
+				    update_currency_or_coin_post_purchase(username,new_point)
+
+				    #Display total points
+				    text36 = "Your total points now " + str(new_point)
+				    label_reg_12 = Label(root1_play, text=text36, font=("bold", 20),bg='grey', fg="yellow")
+				    label_reg_12.place(x=50,y=435)
+
+				    #update attempt table
+				    update_attempted_table(username, str_qno1)
 
 
 
@@ -915,39 +923,39 @@ def  onclick1_play(event):
 # Validate user answers with database and mark it correct if they match 
 
 ###############################################      
-def verify_question(correct_qno,correct,que_qno,option):
-      
-      mycursor = mydb.cursor(prepared=True)
-      sql_query_q11= "select ans from questions1 where qno_no =%s"
-      mycursor.execute(sql_query_q11,(str(que_qno),))
-      for row in mycursor:
-            if (row[0] == option):
-                  correct = correct +1
-                  correct_qno =str(correct_qno)  + str (que_qno) + " ,"
-      return correct
+				def verify_question(correct_qno,correct,que_qno,option):
+
+				      mycursor = mydb.cursor(prepared=True)
+				      sql_query_q11= "select ans from questions1 where qno_no =%s"
+				      mycursor.execute(sql_query_q11,(str(que_qno),))
+				      for row in mycursor:
+					    if (row[0] == option):
+						  correct = correct +1
+						  correct_qno =str(correct_qno)  + str (que_qno) + " ,"
+				      return correct
 
 
 ################################
 ## Update question attempted table when the user submits the questions so that next time when the user is playing same question is not repeated #########
 ################################
-def update_attempted_table(username, str_qno):
+		def update_attempted_table(username, str_qno):
 
-      #  get attempt no for the user from db table 
-      mycursor = mydb.cursor(prepared=True)
-      sql_query1 ="SELECT max(attempt_no) + 1 FROM questions_attempted where username =%s"  
-      mycursor.execute(sql_query1,(str(username),))
-      for row in mycursor:
-                attempt_no =(
-                  row[0]
-                  ) 
-      
-      if (attempt_no is None):
-              attempt_no=1;
+		      #  get attempt no for the user from db table 
+		      mycursor = mydb.cursor(prepared=True)
+		      sql_query1 ="SELECT max(attempt_no) + 1 FROM questions_attempted where username =%s"  
+		      mycursor.execute(sql_query1,(str(username),))
+		      for row in mycursor:
+				attempt_no =(
+				  row[0]
+				  ) 
 
-      ## Add the attempt no and attempted question numbers to the questions attempted table 
-      sql_query_q11= "insert into questions_attempted(username,attempt_no,q1,q2,q3,q4,q5) values(" +"'" + username +"'," +str(attempt_no) +","+str(str_qno) +")"
-      mycursor.execute(sql_query_q11)
-      mydb.commit()
+		      if (attempt_no is None):
+			      attempt_no=1;
+
+		      ## Add the attempt no and attempted question numbers to the questions attempted table 
+		      sql_query_q11= "insert into questions_attempted(username,attempt_no,q1,q2,q3,q4,q5) values(" +"'" + username +"'," +str(attempt_no) +","+str(str_qno) +")"
+		      mycursor.execute(sql_query_q11)
+		      mydb.commit()
 
 
 
@@ -957,16 +965,16 @@ def update_attempted_table(username, str_qno):
 # Update the user currency based on activity  
 ########################################################
 
-def update_currency_or_coin_post_purchase(username,money):
-          mycursor = mydb.cursor(prepared=True)
-          update_query="update currency set coins=%s where username=%s"
-          mycursor.execute(update_query,(money,str(username)))
-          mydb.commit()
+	def update_currency_or_coin_post_purchase(username,money):
+		  mycursor = mydb.cursor(prepared=True)
+		  update_query="update currency set coins=%s where username=%s"
+		  mycursor.execute(update_query,(money,str(username)))
+		  mydb.commit()
 
 
 
 
-Sample output: 
+#Sample output: 
 
  ![image](https://user-images.githubusercontent.com/98585901/203064349-1bccacd1-75b3-418d-9484-8d1619a816ef.png)
 
@@ -976,7 +984,7 @@ When no more un-attempted questions left
 
 
 
-E .  Reward Module 
+#E .  Reward Module #
 Input: None
 Output: 
 •	In the reward / purchase module, user can buy the product available using his coins 
@@ -990,105 +998,105 @@ Code:
 ####################################################################
 #function to design the purchase window 
 ######################################################################
-def purchase_module():
-       
-        label.destroy()
-        label100.destroy()
-        clearFrame()
-        global root
-        root =frame
-        
-      
-        root.columnconfigure(0,weight =1)
-        root.columnconfigure(1,weight =2)
-        
-     
-        label_01 =Label(root,text="Hi "+ username, width=20,font=("bold",20),bg='grey', fg="white")
-      
-        label_01.grid(row =0 , column = 0, sticky = W, pady = 2,columnspan=3) 
+	def purchase_module():
 
-        label_0 =Label(root,text="Welcome to Purchase Central! ", width=20,font=("bold",20),bg='grey', fg="white")
-        label_0.grid(row = 1, column = 0, sticky = W, pady = 2,columnspan=3) 
-
-        #setting the table as per the products available to Purchase ###############
-
-        label_1 =Label(root,text="Items available to Purchase", width=20,font=("bold",20),bg='grey', fg="white")
-        label_1.grid(row = 2, column = 0, sticky = W, pady = 2,columnspan=3)
+		label.destroy()
+		label100.destroy()
+		clearFrame()
+		global root
+		root =frame
 
 
-        #for displaying the table data set the table headings via label ##########
-        e1 = Entry(root, width=20, fg='blue',bg ='yellow',font=('Arial',16,'bold'))
-        e1.grid(row=4,column=0,ipadx=10, ipady=10, sticky="EW")
-        e1.insert(END,"Product_id")
-
-        e2 = Entry(root, width=20, fg='blue',bg ='yellow',font=('Arial',16,'bold'))
-        e2.grid(row=4, column=1, ipadx=10, ipady=10, sticky="EW")
-        e2.insert(END,"Product Description")
-
-                          
-        e3 = Entry(root, width=20, fg='blue',bg ='yellow',font=('Arial',16,'bold'))
-        e3.grid(row=4, column=2, ipadx=10, ipady=10, sticky="EW")
-        e3.insert(END,"Coins reqd to Purchase")
-
-        ### display the catalogue table data in the Window in a table format #########
-        global total_row 
-        total_row= display_all_catalogue_data()  
-
-        ## to give more gap
-        total_row = total_row+6
-
-        # Notify the user about the currnecy and coins he has ###
-
-        user_currency_info_to_be_shown_in_gui(username)
-
-        ### Ask the user what product he wants to buy ##########
-
-        label_5 =Label(root,text="Please enter the product id for what you want ot buy :", width=40,font=("bold",20),bg='grey', fg="white")
-        label_5.grid(row = 12+total_row, column = 0, sticky = W, pady = 2,columnspan =2)
-
-        ## textbox to provide the product id which he wqants to buy based on products displayed in the table ########
-        global e5
-        e5=Entry(root)
-        e5.grid(row=12+total_row, column=1)
+		root.columnconfigure(0,weight =1)
+		root.columnconfigure(1,weight =2)
 
 
-        ############## call the function to validate whether user has money to buy based on username,  product_id and preferred mode of currency ######
-        ### preferred mode of currency and product_id to be inputted by user in the GUI ##########
-        text3 =""
-        text4=""
-        btn=Button(root, text='Submit', width=20,bg='yellow', fg='red')
-        btn.grid(row=12+total_row, column=2)
-        btn.bind('<Button-1>', onclick_purchase)
+		label_01 =Label(root,text="Hi "+ username, width=20,font=("bold",20),bg='grey', fg="white")
+
+		label_01.grid(row =0 , column = 0, sticky = W, pady = 2,columnspan=3) 
+
+		label_0 =Label(root,text="Welcome to Purchase Central! ", width=20,font=("bold",20),bg='grey', fg="white")
+		label_0.grid(row = 1, column = 0, sticky = W, pady = 2,columnspan=3) 
+
+		#setting the table as per the products available to Purchase ###############
+
+		label_1 =Label(root,text="Items available to Purchase", width=20,font=("bold",20),bg='grey', fg="white")
+		label_1.grid(row = 2, column = 0, sticky = W, pady = 2,columnspan=3)
+
+
+		#for displaying the table data set the table headings via label ##########
+		e1 = Entry(root, width=20, fg='blue',bg ='yellow',font=('Arial',16,'bold'))
+		e1.grid(row=4,column=0,ipadx=10, ipady=10, sticky="EW")
+		e1.insert(END,"Product_id")
+
+		e2 = Entry(root, width=20, fg='blue',bg ='yellow',font=('Arial',16,'bold'))
+		e2.grid(row=4, column=1, ipadx=10, ipady=10, sticky="EW")
+		e2.insert(END,"Product Description")
+
+
+		e3 = Entry(root, width=20, fg='blue',bg ='yellow',font=('Arial',16,'bold'))
+		e3.grid(row=4, column=2, ipadx=10, ipady=10, sticky="EW")
+		e3.insert(END,"Coins reqd to Purchase")
+
+		### display the catalogue table data in the Window in a table format #########
+		global total_row 
+		total_row= display_all_catalogue_data()  
+
+		## to give more gap
+		total_row = total_row+6
+
+		# Notify the user about the currnecy and coins he has ###
+
+		user_currency_info_to_be_shown_in_gui(username)
+
+		### Ask the user what product he wants to buy ##########
+
+		label_5 =Label(root,text="Please enter the product id for what you want ot buy :", width=40,font=("bold",20),bg='grey', fg="white")
+		label_5.grid(row = 12+total_row, column = 0, sticky = W, pady = 2,columnspan =2)
+
+		## textbox to provide the product id which he wqants to buy based on products displayed in the table ########
+		global e5
+		e5=Entry(root)
+		e5.grid(row=12+total_row, column=1)
+
+
+		############## call the function to validate whether user has money to buy based on username,  product_id and preferred mode of currency ######
+		### preferred mode of currency and product_id to be inputted by user in the GUI ##########
+		text3 =""
+		text4=""
+		btn=Button(root, text='Submit', width=20,bg='yellow', fg='red')
+		btn.grid(row=12+total_row, column=2)
+		btn.bind('<Button-1>', onclick_purchase)
 
 
 Python program to create a table to display the product catalogue data 
 
-def display_all_catalogue_data():
+			def display_all_catalogue_data():
 
-          class Table:
+				  class Table:
 
-                      def __init__(self,root):
+					      def __init__(self,root):
 
-                          # code for creating table
-                          for i in range(total_rows):
-                              for j in range(total_columns):
+						  # code for creating table
+						  for i in range(total_rows):
+						      for j in range(total_columns):
 
-                                  self.e = Entry(root, width=20, fg='blue',bg='grey',
-                                                font=('Arial',16,'bold'))
-                  
-                                  self.e.grid(row=5+i, column=j, ipadx=10, ipady=10, sticky="EW")
-                                  self.e.insert(END, lst[i][j])
+							  self.e = Entry(root, width=20, fg='blue',bg='grey',
+									font=('Arial',16,'bold'))
 
-          # take the data
+							  self.e.grid(row=5+i, column=j, ipadx=10, ipady=10, sticky="EW")
+							  self.e.insert(END, lst[i][j])
 
-          lst = query_all_in_catalogue()
+				  # take the data
 
-          # find total number of rows and
-          # columns in list
-          total_rows = len(lst)
-          total_columns = len(lst[0])
-          t = Table(root)
-          return total_rows
+				  lst = query_all_in_catalogue()
+
+				  # find total number of rows and
+				  # columns in list
+				  total_rows = len(lst)
+				  total_columns = len(lst[0])
+				  t = Table(root)
+				  return total_rows
 
 
 
@@ -1096,17 +1104,17 @@ def display_all_catalogue_data():
 #Function to display the user currency and coin information ###
 ###########################################
 
-def user_currency_info_to_be_shown_in_gui(username):
-          # Notify the user about the currnecy and coins he has ###
+		def user_currency_info_to_be_shown_in_gui(username):
+			  # Notify the user about the currnecy and coins he has ###
 
-          label_2 =Label(root,text="You have ", width=20,font=("bold",20),bg='grey', fg="white")
-          label_2.grid(row = 7+total_row, column = 0, sticky = W, pady = 2)
+			  label_2 =Label(root,text="You have ", width=20,font=("bold",20),bg='grey', fg="white")
+			  label_2.grid(row = 7+total_row, column = 0, sticky = W, pady = 2)
 
-          currency_1 = user_currency_coin_details(username)
-          text1 = str(currency_1) + " coins "
+			  currency_1 = user_currency_coin_details(username)
+			  text1 = str(currency_1) + " coins "
 
-          label_3 =Label(root,text=text1,bg="green", fg="yellow",  width=20,font=("bold",20))
-          label_3.grid(row = 7+total_row, column = 1, sticky = W, pady = 2)
+			  label_3 =Label(root,text=text1,bg="green", fg="yellow",  width=20,font=("bold",20))
+			  label_3.grid(row = 7+total_row, column = 1, sticky = W, pady = 2)
 
 
 
@@ -1115,17 +1123,17 @@ def user_currency_info_to_be_shown_in_gui(username):
 # get User coin details#
 ##################################################
 
-def user_currency_coin_details(username):
+			def user_currency_coin_details(username):
 
-          item=()
-          mycursor = mydb.cursor(prepared=True)
-          sql_query="select  coins  from currency where username=%s"
-          mycursor.execute(sql_query,(str(username),))
-          for row in mycursor:
-            item =(
-                  row[0]
-                  )
-          return(item)  
+				  item=()
+				  mycursor = mydb.cursor(prepared=True)
+				  sql_query="select  coins  from currency where username=%s"
+				  mycursor.execute(sql_query,(str(username),))
+				  for row in mycursor:
+				    item =(
+					  row[0]
+					  )
+				  return(item)  
 
 
 #############################################
@@ -1133,72 +1141,72 @@ def user_currency_coin_details(username):
 # Clicking on submit button in purchase module ###
 
 ###############################################
-def onclick_purchase(event):
-          product_availability_based_on_currency(username,str(e5.get()))
+		def onclick_purchase(event):
+			  product_availability_based_on_currency(username,str(e5.get()))
 
 
 
-def product_availability_based_on_currency(username,productid):
-            mycursor = mydb.cursor(prepared=True)
+		def product_availability_based_on_currency(username,productid):
+			    mycursor = mydb.cursor(prepared=True)
 
-            ### check the product price in terms of  in catalogue table based on product id chosen by user############
-            
-            productid=int(productid)
+			    ### check the product price in terms of  in catalogue table based on product id chosen by user############
 
-            # check if product id given exists in DB 
-            sql_query1="select count(*) from catalogue where product_id=%s"
+			    productid=int(productid)
 
-            mycursor.execute(sql_query1,str(productid))
-            for row in mycursor:
-                item3 =(
-                  row[0]
-                  ) 
+			    # check if product id given exists in DB 
+			    sql_query1="select count(*) from catalogue where product_id=%s"
 
-            if (item3 ==0):
-              text3 ="Product id does not exist"  
-              text4="Please select produc id from the above table "
-            elif (item3 > 0):
-                      sql_query="select coins_required from catalogue where product_id=%s"
+			    mycursor.execute(sql_query1,str(productid))
+			    for row in mycursor:
+				item3 =(
+				  row[0]
+				  ) 
 
-                      mycursor.execute(sql_query,str(productid))
-                      for row in mycursor:
-                          item =(
-                            row[0]
-                            ) 
-                      #### check  user coin from database ###########
-                    
-                      sql_query="select coins from currency where username=%s"
-                      mycursor.execute(sql_query,(str(username),))
-                    
-                      for row in mycursor:
-                          item1 =(
-                            row[0]
-                            )  
+			    if (item3 ==0):
+			      text3 ="Product id does not exist"  
+			      text4="Please select produc id from the above table "
+			    elif (item3 > 0):
+				      sql_query="select coins_required from catalogue where product_id=%s"
 
-                    ### compare if user coin is enough to purchase the product he has chosen #######
-                    ### if user has money , then purchase the product he has opted for and deduct the amount from his account ##################
+				      mycursor.execute(sql_query,str(productid))
+				      for row in mycursor:
+					  item =(
+					    row[0]
+					    ) 
+				      #### check  user coin from database ###########
 
-                     
-                      if (item1>=item):
-                        item1= item1-item
-                        text3 ="Congrats !Your purchase is succssful"
-                        update_currency_or_coin_post_purchase(username,item1)
-                        text4 = "Please check for your latest currency status above"
-                      elif (item1<item):
-                        text3 ="Sorry! You dont have enough money "
+				      sql_query="select coins from currency where username=%s"
+				      mycursor.execute(sql_query,(str(username),))
 
-         
-          #### update the GUI with the text3 message ###########
-            label_6 =Label(root,text=text3,bg="yellow", width=40,font=("bold",20))
-            label_6.grid(row = 15+total_row, column = 0, columnspan =3, sticky = W, pady = 2)
+				      for row in mycursor:
+					  item1 =(
+					    row[0]
+					    )  
 
-            label_7 =Label(root,text=text4, bg="yellow", width=40,font=("bold",20))
-            label_7.grid(row = 17+total_row, column = 0,columnspan =3,sticky = W, pady = 2)
+				    ### compare if user coin is enough to purchase the product he has chosen #######
+				    ### if user has money , then purchase the product he has opted for and deduct the amount from his account ##################
 
-          #### call the function to display his latest money status ##########
-            user_currency_info_to_be_shown_in_gui(username)
 
-Sample output: 
+				      if (item1>=item):
+					item1= item1-item
+					text3 ="Congrats !Your purchase is succssful"
+					update_currency_or_coin_post_purchase(username,item1)
+					text4 = "Please check for your latest currency status above"
+				      elif (item1<item):
+					text3 ="Sorry! You dont have enough money "
+
+
+			  #### update the GUI with the text3 message ###########
+			    label_6 =Label(root,text=text3,bg="yellow", width=40,font=("bold",20))
+			    label_6.grid(row = 15+total_row, column = 0, columnspan =3, sticky = W, pady = 2)
+
+			    label_7 =Label(root,text=text4, bg="yellow", width=40,font=("bold",20))
+			    label_7.grid(row = 17+total_row, column = 0,columnspan =3,sticky = W, pady = 2)
+
+			  #### call the function to display his latest money status ##########
+			    user_currency_info_to_be_shown_in_gui(username)
+
+#Sample output: 
 Case 1: Pre purchase , display the product to purchase , and gives option to enter product id to purchase the corresponding product 
 ![image](https://user-images.githubusercontent.com/98585901/203064744-a07c4910-e4e6-4a4a-8075-08c3b4137d0a.png)
 
@@ -1217,7 +1225,7 @@ Case3 : If user does not have enough money to purchase, user will be prompted wi
  ![image](https://user-images.githubusercontent.com/98585901/203064934-aabebbe2-0e25-47da-8307-881ffee8f534.png)
 
 
-F .  Admin Module 
+#F .  Admin Module #
 Input: user should login as admin  
 Output: 
 o	If the logged-in user is an admin, he will be getting an additional admin module to add new quiz questions
@@ -1232,132 +1240,132 @@ Code
 ##############################################
 # Function to design the insert question UI form 
 ##################################################
-def insert_question_form():
-        label.destroy()
-        label100.destroy()
-        
-        clearFrame()
-        global root_insert
-        root_insert=frame
+		def insert_question_form():
+			label.destroy()
+			label100.destroy()
 
-        # label to display question form heading 
-        label_insert_0 = Label(root_insert, text="Insert Question form",width=20,font=("bold", 40),bg='grey', fg="white")
-        label_insert_0.place(x=90,y=53)
-        # labek to read question level ( not used )
-        label_insert_1 = Label(root_insert, text="*Question Level",width=20,font=("bold", 20),bg='grey', fg="white")
-        label_insert_1.place(x=80,y=130)
-        # entry box to read question level 
-        global entry_insert_1
-        entry_insert_1 = Entry(root_insert,width=20,bg='grey', fg="white")
-        entry_insert_1.place(x=300,y=130)
+			clearFrame()
+			global root_insert
+			root_insert=frame
 
-        # label to read question description 
-        label_insert_2 = Label(root_insert, text="Qestion Description",width=20,font=("bold", 20),bg='grey', fg="white")
-        label_insert_2.place(x=68,y=180)
-        # entry box  to read question description 
-        global entry_insert_2
-        entry_insert_2 = Entry(root_insert,width=20,bg='grey', fg="white")
-        entry_insert_2.place(x=300,y=180)
-        label_insert_3 = Label(root_insert, text="Option 1",width=20,font=("bold", 20),bg='grey', fg="white")
-        label_insert_3.place(x=70,y=230)
-        global entry_insert_3
-        entry_insert_3 = Entry(root_insert,width=20,bg='grey', fg="white")
-        entry_insert_3.place(x=300,y=230)
-        
-        label_insert_4 = Label(root_insert, text="Option 2",width=20,font=("bold", 20),bg='grey', fg="white")
-        label_insert_4.place(x=70,y=280)
-        global entry_insert_4
-        entry_insert_4 = Entry(root_insert,width=20,bg='grey', fg="white")
-        entry_insert_4.place(x=300,y=280)
+			# label to display question form heading 
+			label_insert_0 = Label(root_insert, text="Insert Question form",width=20,font=("bold", 40),bg='grey', fg="white")
+			label_insert_0.place(x=90,y=53)
+			# labek to read question level ( not used )
+			label_insert_1 = Label(root_insert, text="*Question Level",width=20,font=("bold", 20),bg='grey', fg="white")
+			label_insert_1.place(x=80,y=130)
+			# entry box to read question level 
+			global entry_insert_1
+			entry_insert_1 = Entry(root_insert,width=20,bg='grey', fg="white")
+			entry_insert_1.place(x=300,y=130)
 
-        label_insert_5= Label(root_insert, text="Option 3",width=20,font=("bold", 20),bg='grey', fg="white")
-        label_insert_5.place(x=70,y=310)
-        global entry_insert_5
-        entry_insert_5 = Entry(root_insert,width=20,bg='grey', fg="white")
-        entry_insert_5.place(x=300,y=310)
+			# label to read question description 
+			label_insert_2 = Label(root_insert, text="Qestion Description",width=20,font=("bold", 20),bg='grey', fg="white")
+			label_insert_2.place(x=68,y=180)
+			# entry box  to read question description 
+			global entry_insert_2
+			entry_insert_2 = Entry(root_insert,width=20,bg='grey', fg="white")
+			entry_insert_2.place(x=300,y=180)
+			label_insert_3 = Label(root_insert, text="Option 1",width=20,font=("bold", 20),bg='grey', fg="white")
+			label_insert_3.place(x=70,y=230)
+			global entry_insert_3
+			entry_insert_3 = Entry(root_insert,width=20,bg='grey', fg="white")
+			entry_insert_3.place(x=300,y=230)
 
-        label_insert_6= Label(root_insert, text="Answer",width=20,font=("bold", 20),bg='grey', fg="white")
-        label_insert_6.place(x=70,y=350)
-        global entry_insert_6
-        entry_insert_6= Entry(root_insert,width=20,bg='grey', fg="white")
-        entry_insert_6.place(x=300,y=350)
+			label_insert_4 = Label(root_insert, text="Option 2",width=20,font=("bold", 20),bg='grey', fg="white")
+			label_insert_4.place(x=70,y=280)
+			global entry_insert_4
+			entry_insert_4 = Entry(root_insert,width=20,bg='grey', fg="white")
+			entry_insert_4.place(x=300,y=280)
+
+			label_insert_5= Label(root_insert, text="Option 3",width=20,font=("bold", 20),bg='grey', fg="white")
+			label_insert_5.place(x=70,y=310)
+			global entry_insert_5
+			entry_insert_5 = Entry(root_insert,width=20,bg='grey', fg="white")
+			entry_insert_5.place(x=300,y=310)
+
+			label_insert_6= Label(root_insert, text="Answer",width=20,font=("bold", 20),bg='grey', fg="white")
+			label_insert_6.place(x=70,y=350)
+			global entry_insert_6
+			entry_insert_6= Entry(root_insert,width=20,bg='grey', fg="white")
+			entry_insert_6.place(x=300,y=350)
 
 
-        btn1=Button(root_insert, text='Submit', width=20,bg='yellow', fg='red')
-        btn1.place(x=180,y=380)
-        # on button click , call the function onlicki1_insert_data 
-        btn1.bind('<Button-1>', onclick1_insert_data)
+			btn1=Button(root_insert, text='Submit', width=20,bg='yellow', fg='red')
+			btn1.place(x=180,y=380)
+			# on button click , call the function onlicki1_insert_data 
+			btn1.bind('<Button-1>', onclick1_insert_data)
 
 ##########################################################
 # Insert question in the database questions1 table as admin 
 ###########################################################
 
-def  onclick1_insert_data(event):
-        mycursor = mydb.cursor(prepared=True)  
-        # validation for checking if q_level is empty , then show *mandatry next to teh q_level entry box 
-        q_level =str(entry_insert_1.get())
-        if (len(q_level) == 0):
-              label_reg_11 = Label(root_insert, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-              label_reg_11.place(x=500,y=130)
+		def  onclick1_insert_data(event):
+			mycursor = mydb.cursor(prepared=True)  
+			# validation for checking if q_level is empty , then show *mandatry next to teh q_level entry box 
+			q_level =str(entry_insert_1.get())
+			if (len(q_level) == 0):
+			      label_reg_11 = Label(root_insert, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+			      label_reg_11.place(x=500,y=130)
 
-         # validation for checking if qno_dssc is empty , then show *mandatry next to teh q_level entry box 
-        qno_desc =str(entry_insert_2.get())
-        if (len(qno_desc) == 0):
-              label_reg_11 = Label(root_insert, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-              label_reg_11.place(x=500,y=180)
+			 # validation for checking if qno_dssc is empty , then show *mandatry next to teh q_level entry box 
+			qno_desc =str(entry_insert_2.get())
+			if (len(qno_desc) == 0):
+			      label_reg_11 = Label(root_insert, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+			      label_reg_11.place(x=500,y=180)
 
-        opt_a =str(entry_insert_3.get())
-        if (len(opt_a) == 0):
-              label_reg_11 = Label(root_insert, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-              label_reg_11.place(x=500,y=230)
-        
-        opt_b =str(entry_insert_4.get())
-        if (len(opt_a) == 0):
-              label_reg_11 = Label(root_insert, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-              label_reg_11.place(x=500,y=280)
-        
-        opt_c =str(entry_insert_5.get())
-        if (len(opt_a) == 0):
-              label_reg_11 = Label(root_insert, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-              label_reg_11.place(x=500,y=310)
+			opt_a =str(entry_insert_3.get())
+			if (len(opt_a) == 0):
+			      label_reg_11 = Label(root_insert, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+			      label_reg_11.place(x=500,y=230)
 
-        ans =str(entry_insert_6.get())
-        if (len(ans) == 0):
-              label_reg_11 = Label(root_insert, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
-              label_reg_11.place(x=500,y=330)
-        
+			opt_b =str(entry_insert_4.get())
+			if (len(opt_a) == 0):
+			      label_reg_11 = Label(root_insert, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+			      label_reg_11.place(x=500,y=280)
 
-        # qno_no will be auto incremented , and inserted . For that , it will read the latest qno from db table and increment by 1 and then insert for new question 
-        sql_query1 ="SELECT max(qno_no) + 1 FROM questions1"  
-        mycursor.execute(sql_query1)
-        for row in mycursor:
-                item4 =(
-                  row[0]
-                  ) 
-      
-        if (item4 is None):
-              item4=1;
+			opt_c =str(entry_insert_5.get())
+			if (len(opt_a) == 0):
+			      label_reg_11 = Label(root_insert, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+			      label_reg_11.place(x=500,y=310)
 
-        ###  insert new question in db table 
-        insert_query1="insert into questions1(qno_no,q_level,qno_desc,opt_a,opt_b,opt_c,ans) values(%s,%s,%s,%s,%s,%s,%s)"
-
-        mycursor.execute(insert_query1,(str(item4),str(q_level),str(qno_desc),str(opt_a),str(opt_b),str(opt_c),str(ans)))
-        mydb.commit()
-
-        # check if data is inserted 
-        sql_query2="select count(*) from  questions1 where qno_no =%s"
-        mycursor.execute(sql_query2,(str(item4),))
-        for row in mycursor:
-                item5 =(
-                  row[0]
-                  ) 
-        
-        if (item5==1):
-              label_insert_7= Label(root_insert, text="Record Inserted Successfully",width=20,font=("bold", 20),bg='grey', fg="yellow")
-              label_insert_7.place(x=70,y=430)
+			ans =str(entry_insert_6.get())
+			if (len(ans) == 0):
+			      label_reg_11 = Label(root_insert, text="*Mandatory",width=20,font=("bold", 20),bg='grey', fg="red")
+			      label_reg_11.place(x=500,y=330)
 
 
-Sample output 
+			# qno_no will be auto incremented , and inserted . For that , it will read the latest qno from db table and increment by 1 and then insert for new question 
+			sql_query1 ="SELECT max(qno_no) + 1 FROM questions1"  
+			mycursor.execute(sql_query1)
+			for row in mycursor:
+				item4 =(
+				  row[0]
+				  ) 
+
+			if (item4 is None):
+			      item4=1;
+
+			###  insert new question in db table 
+			insert_query1="insert into questions1(qno_no,q_level,qno_desc,opt_a,opt_b,opt_c,ans) values(%s,%s,%s,%s,%s,%s,%s)"
+
+			mycursor.execute(insert_query1,(str(item4),str(q_level),str(qno_desc),str(opt_a),str(opt_b),str(opt_c),str(ans)))
+			mydb.commit()
+
+			# check if data is inserted 
+			sql_query2="select count(*) from  questions1 where qno_no =%s"
+			mycursor.execute(sql_query2,(str(item4),))
+			for row in mycursor:
+				item5 =(
+				  row[0]
+				  ) 
+
+			if (item5==1):
+			      label_insert_7= Label(root_insert, text="Record Inserted Successfully",width=20,font=("bold", 20),bg='grey', fg="yellow")
+			      label_insert_7.place(x=70,y=430)
+
+
+#Sample output 
 ![image](https://user-images.githubusercontent.com/98585901/203065026-10b1107a-58b5-4697-baba-d9fe410b96e6.png)
 
  
