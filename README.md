@@ -990,9 +990,10 @@ When no more un-attempted questions left
 
 
 
-#E .  Reward Module #
+# E .  Reward Module #
 
 Input: None
+
 Output: 
 •	In the reward / purchase module, user can buy the product available using his coins 
 •	The available product will be displayed at the top along with the number of coins required to purchase them 
@@ -1002,6 +1003,7 @@ List of database tables:
 •	catalog
 •	currency 
 Code:
+
 ####################################################################
 #function to design the purchase window 
 ######################################################################
