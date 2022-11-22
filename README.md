@@ -468,6 +468,7 @@ Case 4:
 
 
 # C .  Login Module #
+
 Input: Username, password
 Output: 
 o	All inputs are valid and authenticated. 
@@ -483,33 +484,34 @@ Function to create login form
 ####################################################
 Function to create login window using Tkinter 
 ###################################################
-def login_form():
-        # tkinter login form 
-        label.destroy()
-        label100.destroy()
-  
-        clearFrame()
-        global root_login
 
-        root_login =frame
-        
-        label_reg_login_0 = Label(root_login, text="Login Details",width=20,font=("bold", 40),bg='grey', fg="white")
-        label_reg_login_0.place(x=90,y=53)
-        label_reg_login_1 = Label(root_login, text="*Username",width=20,font=("bold", 20),bg='grey', fg="white")
-        label_reg_login_1.place(x=70,y=130)
-        global entry_reg_login_1
-        entry_reg_login_1 = Entry(root_login,width=20,bg='grey', fg="white")
-        entry_reg_login_1.place(x=300,y=130)
+				def login_form():
+					# tkinter login form 
+					label.destroy()
+					label100.destroy()
 
-        label_login_reg_5= Label(root_login, text="*Password:",width=20,font=("bold", 20),bg='grey', fg="white")
-        label_login_reg_5.place(x=70,y=310)
-        global entry_login_reg_5
-        entry_login_reg_5 = Entry(root_login,width=20,bg='grey', fg="white")
-        entry_login_reg_5.place(x=300,y=310)
+					clearFrame()
+					global root_login
 
-        btn1=Button(root_login, text='Submit', width=20,bg='yellow', fg='red')
-        btn1.place(x=180,y=380)
-        btn1.bind('<Button-1>', onclick1_login)
+					root_login =frame
+
+					label_reg_login_0 = Label(root_login, text="Login Details",width=20,font=("bold", 40),bg='grey', fg="white")
+					label_reg_login_0.place(x=90,y=53)
+					label_reg_login_1 = Label(root_login, text="*Username",width=20,font=("bold", 20),bg='grey', fg="white")
+					label_reg_login_1.place(x=70,y=130)
+					global entry_reg_login_1
+					entry_reg_login_1 = Entry(root_login,width=20,bg='grey', fg="white")
+					entry_reg_login_1.place(x=300,y=130)
+
+					label_login_reg_5= Label(root_login, text="*Password:",width=20,font=("bold", 20),bg='grey', fg="white")
+					label_login_reg_5.place(x=70,y=310)
+					global entry_login_reg_5
+					entry_login_reg_5 = Entry(root_login,width=20,bg='grey', fg="white")
+					entry_login_reg_5.place(x=300,y=310)
+
+					btn1=Button(root_login, text='Submit', width=20,bg='yellow', fg='red')
+					btn1.place(x=180,y=380)
+					btn1.bind('<Button-1>', onclick1_login)
 
 Function to validate login information 
 ######################################################
@@ -627,6 +629,7 @@ Code:
 #########################################################################
 #  Function to get question ids  not attempted by user previously
 ##########################################################################
+
 		def query_qids_not_attempted_by_user(q_level):
 
 			    # clear the frame and destroy the first screen labels
@@ -923,7 +926,8 @@ Code:
 ############################################
 # Validate user answers with database and mark it correct if they match 
 
-###############################################      
+###############################################  
+
 				def verify_question(correct_qno,correct,que_qno,option):
 
 				      mycursor = mydb.cursor(prepared=True)
@@ -939,6 +943,7 @@ Code:
 ################################
 ## Update question attempted table when the user submits the questions so that next time when the user is playing same question is not repeated #########
 ################################
+
 		def update_attempted_table(username, str_qno):
 
 		      #  get attempt no for the user from db table 
@@ -986,6 +991,7 @@ When no more un-attempted questions left
 
 
 #E .  Reward Module #
+
 Input: None
 Output: 
 •	In the reward / purchase module, user can buy the product available using his coins 
@@ -1000,105 +1006,105 @@ Code:
 #function to design the purchase window 
 ######################################################################
 
-	def purchase_module():
+			def purchase_module():
 
-		label.destroy()
-		label100.destroy()
-		clearFrame()
-		global root
-		root =frame
-
-
-		root.columnconfigure(0,weight =1)
-		root.columnconfigure(1,weight =2)
+				label.destroy()
+				label100.destroy()
+				clearFrame()
+				global root
+				root =frame
 
 
-		label_01 =Label(root,text="Hi "+ username, width=20,font=("bold",20),bg='grey', fg="white")
-
-		label_01.grid(row =0 , column = 0, sticky = W, pady = 2,columnspan=3) 
-
-		label_0 =Label(root,text="Welcome to Purchase Central! ", width=20,font=("bold",20),bg='grey', fg="white")
-		label_0.grid(row = 1, column = 0, sticky = W, pady = 2,columnspan=3) 
-
-		#setting the table as per the products available to Purchase ###############
-
-		label_1 =Label(root,text="Items available to Purchase", width=20,font=("bold",20),bg='grey', fg="white")
-		label_1.grid(row = 2, column = 0, sticky = W, pady = 2,columnspan=3)
+				root.columnconfigure(0,weight =1)
+				root.columnconfigure(1,weight =2)
 
 
-		#for displaying the table data set the table headings via label ##########
-		e1 = Entry(root, width=20, fg='blue',bg ='yellow',font=('Arial',16,'bold'))
-		e1.grid(row=4,column=0,ipadx=10, ipady=10, sticky="EW")
-		e1.insert(END,"Product_id")
+				label_01 =Label(root,text="Hi "+ username, width=20,font=("bold",20),bg='grey', fg="white")
 
-		e2 = Entry(root, width=20, fg='blue',bg ='yellow',font=('Arial',16,'bold'))
-		e2.grid(row=4, column=1, ipadx=10, ipady=10, sticky="EW")
-		e2.insert(END,"Product Description")
+				label_01.grid(row =0 , column = 0, sticky = W, pady = 2,columnspan=3) 
 
+				label_0 =Label(root,text="Welcome to Purchase Central! ", width=20,font=("bold",20),bg='grey', fg="white")
+				label_0.grid(row = 1, column = 0, sticky = W, pady = 2,columnspan=3) 
 
-		e3 = Entry(root, width=20, fg='blue',bg ='yellow',font=('Arial',16,'bold'))
-		e3.grid(row=4, column=2, ipadx=10, ipady=10, sticky="EW")
-		e3.insert(END,"Coins reqd to Purchase")
+				#setting the table as per the products available to Purchase ###############
 
-		### display the catalogue table data in the Window in a table format #########
-		global total_row 
-		total_row= display_all_catalogue_data()  
-
-		## to give more gap
-		total_row = total_row+6
-
-		# Notify the user about the currnecy and coins he has ###
-
-		user_currency_info_to_be_shown_in_gui(username)
-
-		### Ask the user what product he wants to buy ##########
-
-		label_5 =Label(root,text="Please enter the product id for what you want ot buy :", width=40,font=("bold",20),bg='grey', fg="white")
-		label_5.grid(row = 12+total_row, column = 0, sticky = W, pady = 2,columnspan =2)
-
-		## textbox to provide the product id which he wqants to buy based on products displayed in the table ########
-		global e5
-		e5=Entry(root)
-		e5.grid(row=12+total_row, column=1)
+				label_1 =Label(root,text="Items available to Purchase", width=20,font=("bold",20),bg='grey', fg="white")
+				label_1.grid(row = 2, column = 0, sticky = W, pady = 2,columnspan=3)
 
 
-		############## call the function to validate whether user has money to buy based on username,  product_id and preferred mode of currency ######
-		### preferred mode of currency and product_id to be inputted by user in the GUI ##########
-		text3 =""
-		text4=""
-		btn=Button(root, text='Submit', width=20,bg='yellow', fg='red')
-		btn.grid(row=12+total_row, column=2)
-		btn.bind('<Button-1>', onclick_purchase)
+				#for displaying the table data set the table headings via label ##########
+				e1 = Entry(root, width=20, fg='blue',bg ='yellow',font=('Arial',16,'bold'))
+				e1.grid(row=4,column=0,ipadx=10, ipady=10, sticky="EW")
+				e1.insert(END,"Product_id")
+
+				e2 = Entry(root, width=20, fg='blue',bg ='yellow',font=('Arial',16,'bold'))
+				e2.grid(row=4, column=1, ipadx=10, ipady=10, sticky="EW")
+				e2.insert(END,"Product Description")
 
 
-Python program to create a table to display the product catalogue data 
+				e3 = Entry(root, width=20, fg='blue',bg ='yellow',font=('Arial',16,'bold'))
+				e3.grid(row=4, column=2, ipadx=10, ipady=10, sticky="EW")
+				e3.insert(END,"Coins reqd to Purchase")
 
-			def display_all_catalogue_data():
+				### display the catalogue table data in the Window in a table format #########
+				global total_row 
+				total_row= display_all_catalogue_data()  
 
-				  class Table:
+				## to give more gap
+				total_row = total_row+6
 
-					      def __init__(self,root):
+				# Notify the user about the currnecy and coins he has ###
 
-						  # code for creating table
-						  for i in range(total_rows):
-						      for j in range(total_columns):
+				user_currency_info_to_be_shown_in_gui(username)
 
-							  self.e = Entry(root, width=20, fg='blue',bg='grey',
-									font=('Arial',16,'bold'))
+				### Ask the user what product he wants to buy ##########
 
-							  self.e.grid(row=5+i, column=j, ipadx=10, ipady=10, sticky="EW")
-							  self.e.insert(END, lst[i][j])
+				label_5 =Label(root,text="Please enter the product id for what you want ot buy :", width=40,font=("bold",20),bg='grey', fg="white")
+				label_5.grid(row = 12+total_row, column = 0, sticky = W, pady = 2,columnspan =2)
 
-				  # take the data
+				## textbox to provide the product id which he wqants to buy based on products displayed in the table ########
+				global e5
+				e5=Entry(root)
+				e5.grid(row=12+total_row, column=1)
 
-				  lst = query_all_in_catalogue()
 
-				  # find total number of rows and
-				  # columns in list
-				  total_rows = len(lst)
-				  total_columns = len(lst[0])
-				  t = Table(root)
-				  return total_rows
+				############## call the function to validate whether user has money to buy based on username,  product_id and preferred mode of currency ######
+				### preferred mode of currency and product_id to be inputted by user in the GUI ##########
+				text3 =""
+				text4=""
+				btn=Button(root, text='Submit', width=20,bg='yellow', fg='red')
+				btn.grid(row=12+total_row, column=2)
+				btn.bind('<Button-1>', onclick_purchase)
+
+
+		Python program to create a table to display the product catalogue data 
+
+					def display_all_catalogue_data():
+
+						  class Table:
+
+							      def __init__(self,root):
+
+								  # code for creating table
+								  for i in range(total_rows):
+								      for j in range(total_columns):
+
+									  self.e = Entry(root, width=20, fg='blue',bg='grey',
+											font=('Arial',16,'bold'))
+
+									  self.e.grid(row=5+i, column=j, ipadx=10, ipady=10, sticky="EW")
+									  self.e.insert(END, lst[i][j])
+
+						  # take the data
+
+						  lst = query_all_in_catalogue()
+
+						  # find total number of rows and
+						  # columns in list
+						  total_rows = len(lst)
+						  total_columns = len(lst[0])
+						  t = Table(root)
+						  return total_rows
 
 
 
@@ -1230,7 +1236,9 @@ Case3 : If user does not have enough money to purchase, user will be prompted wi
 
 
 # F .  Admin Module #
+
 Input: user should login as admin  
+
 Output: 
 o	If the logged-in user is an admin, he will be getting an additional admin module to add new quiz questions
 o	The question_no will be auto incremented by one while adding new question in the database so that there is no two questions added with same question_no
@@ -1244,6 +1252,7 @@ Code
 ##############################################
 # Function to design the insert question UI form 
 ##################################################
+
 		def insert_question_form():
 			label.destroy()
 			label100.destroy()
