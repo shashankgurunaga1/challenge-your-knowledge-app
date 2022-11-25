@@ -34,33 +34,55 @@ o	On successful validation of the above entries, the application stores the user
 o	Also, upon registration, 500 points are awarded to the first-time user. 
 
 o	Error handling/Validation: 
+
 i.	Username cannot be blank – shows *mandatory on screen next to username entry box. 
+
 ii.	Password cannot be blank - shows *mandatory on screen next to password entry box. 
+
 iii.	If user enters non integer value in age field, it will prompt that only integer is allowed
+
 iv.	Check for same username existence in Database table – checks against user_profile table 
+
 •	If username already exists, gives message, to user notifying the username already exists 
 
 d)	Login Module
+
 o	Once registered, user can login in the app using the username and password chosen by him/her.
+
 o	On clicking the login option menu in application, user will be asked to provide username and password to login in the app 
+
 o	On successful login (userid and password are validated against database user profile table) , the app will take the user to the quiz wizard.
+
 o	Error handling/validation: 
+
 I.	Username cannot be blank – shows *mandatory on screen next to username entry box 
+
 II.	Password cannot be blank – shows *mandatory on screen next to password entry box 
+
 III.	Check for Username’s presence in the database, else gives message “Username does not exist” 
+
 IV.	Check for Password’s presence in the database else gives message “Password does not match “
 
 e)	Play Module 
+
 o	On successful login (userid and password are validated against database user profile table), the app will take the user to the quiz wizard.
+
 o	In Quiz wizard, user will be given  max 5 MCQs in a single UI screen with 3 options for each question.
+
 o	If the questions are already attempted by User, then they will not be coming again 
+
 o	At the end of submission, it will show the number of correct questions and also will award 10 coins for each correct question.
+
 o	It will also show the total coins in user account.
 
 f)	Reward Module
+
 o	In the reward / purchase module, user can buy the product available using his coins 
+
 o	The available product will be displayed at the top along with the number of coins required to purchase them 
+
 o	On purchase, coins will be deducted, and new total coins will be shown in the UI window
+
 o	If the user enters an invalid product id, it will give an error message saying product id does not exist 
 
 g)	Admin – Insert new Quiz Question Module 
@@ -115,10 +137,13 @@ Block Diagram
 
 
 Database Schema 
+
 Below is the list of the tables used in this application.
 
 a)	Table name: user_profile 
+
 Description: Stores the user information.
+
 Table information: 
 
 | Field | Type | Comments   |
@@ -133,8 +158,11 @@ Table information:
 
 
 b)	Table name: catalogue 
+
 Description: Store the product details that are available for purchase using reward points
+
 Table information: 
+
 | Field | Type | Comments  | 
 | :---: | :---: | :---: |
 |Product_id | int | Product_id  is the primary and not null |
@@ -142,16 +170,22 @@ Table information:
 |Coins_required | int |  Coins required to purchase each product |
 
 c)	Table name: currency 
+
 Description: Store the currency for user 
+
 Table information: 
+
 |Field	|Type |	Extra |
 | :---: | :---: | :---: |
 |username|Varchar(100)| Foreign key of username from user_profile table  This field is primary and not null for this table| 
 |coins|int|Coins that user has 
 
 d)	Table name: questions1 
+
 Description: Stores the MCQ questions with 3 options and correct answer 
+
 Table information: 
+
 |Field	|Type	|Extra|
 | :---: | :---: | :---: |
 |Q_no	|int	|Question_no is primary and not null |
@@ -163,8 +197,11 @@ Table information:
 |ans	|Varchar(500)	|Contain the correct answer|
 
 a)	Table name: questions_attempted
+
 Description: Stores the questions attempted by user so that next time they are not repeated 
+
 Table information: 
+
 |Field	|Type	|Extra|
 |:---:|:---:|:---:|
 |Username 	|int	|Primary key , not null and also Foreign key of username from user_profile table  |
@@ -182,106 +219,109 @@ Table information:
 # A. Launch the application #
 
      Input: Nothing specific (just run the python program) 
+     
      Output: Application launched with registration and login menu
+     
      List of datafiles/database: None 
+     
      Code: 
      
-#######################################
- Menu load based on username 
-#######################################
+				#######################################
+				 Menu load based on username 
+				#######################################
 
 
 
 
 
 
-        def menu_load(username):
-         
-	 # if first time the application is loaded , it will only show login and register menu 
-	 
-	 # the check is made by checking username is None
-	 
-			 if( username is None):
-				global file3 
-				file3 = Menu(menubar, tearoff = 0) 
-				menubar.add_cascade(label ='Login/Register', menu = file3) 
-				file3.add_command(label ='Register', command = register_form) 
-				file3.add_command(label ='Login', command = login_form) 
-				file3.add_separator() 
-				file3.add_command(label ='Exit', command = main_root.quit) 
+				def menu_load(username):
 
-			# once the user is logged in , username will be not None 
+				 # if first time the application is loaded , it will only show login and register menu 
 
-			# here username is a global variable , used in different functions 
+				 # the check is made by checking username is None
 
-			elif ( username is not None) : 
+						 if( username is None):
+							global file3 
+							file3 = Menu(menubar, tearoff = 0) 
+							menubar.add_cascade(label ='Login/Register', menu = file3) 
+							file3.add_command(label ='Register', command = register_form) 
+							file3.add_command(label ='Login', command = login_form) 
+							file3.add_separator() 
+							file3.add_command(label ='Exit', command = main_root.quit) 
 
-				# delete the login submenu so the user cant try relogin or reregister once logged in 
+						# once the user is logged in , username will be not None 
 
-				file3.delete(0,END)
+						# here username is a global variable , used in different functions 
 
-				# Display Play game menu  
+						elif ( username is not None) : 
 
-				file = Menu(menubar, tearoff = 0) 
-				menubar.add_cascade(label ='Play Game', menu = file) 
-				file.add_command(label ='Start', command = play_game_functon) 
-				file.add_separator() 
-				file.add_command(label ='Exit', command = main_root.quit) 
+							# delete the login submenu so the user cant try relogin or reregister once logged in 
 
-				# Display Reward menu 
+							file3.delete(0,END)
 
-				file1 = Menu(menubar, tearoff = 0) 
-				menubar.add_cascade(label ='Reward', menu = file1) 
-				file1.add_command(label ='Purchase Product', command=purchase_module)
-				file1.add_separator() 
+							# Display Play game menu  
 
-			 # if user is admim , display admin module also
+							file = Menu(menubar, tearoff = 0) 
+							menubar.add_cascade(label ='Play Game', menu = file) 
+							file.add_command(label ='Start', command = play_game_functon) 
+							file.add_separator() 
+							file.add_command(label ='Exit', command = main_root.quit) 
 
-			 if (username =='admin'):
-				file2 = Menu(menubar, tearoff = 0) 
-				menubar.add_cascade(label ='Admin Module', menu = file2) 
-				file2.add_command(label ='Add Record', command = insert_question_form) 
-				file2.add_separator() 
+							# Display Reward menu 
 
-################################
-Main UI in tkinter
-####################################
+							file1 = Menu(menubar, tearoff = 0) 
+							menubar.add_cascade(label ='Reward', menu = file1) 
+							file1.add_command(label ='Purchase Product', command=purchase_module)
+							file1.add_separator() 
+
+						 # if user is admim , display admin module also
+
+						 if (username =='admin'):
+							file2 = Menu(menubar, tearoff = 0) 
+							menubar.add_cascade(label ='Admin Module', menu = file2) 
+							file2.add_command(label ='Add Record', command = insert_question_form) 
+							file2.add_separator() 
+
+			################################
+			Main UI in tkinter
+			####################################
 
 
-			global username
-			username = None 
+						global username
+						username = None 
 
-# create root window
+			# create root window
 
-		main_root = Tk()
-		main_root.title("Challenge Your Knowledge")
-		main_root.geometry("1200x800")
+					main_root = Tk()
+					main_root.title("Challenge Your Knowledge")
+					main_root.geometry("1200x800")
 
-		create frame
+					create frame
 
-		global frame
+					global frame
 
-		frame=Frame(main_root,bg='grey')
-		frame.place(relx=0.2,rely=0.2,relheight=0.6,relwidth=0.6)
+					frame=Frame(main_root,bg='grey')
+					frame.place(relx=0.2,rely=0.2,relheight=0.6,relwidth=0.6)
 
-		main_root.configure(bg='grey')
+					main_root.configure(bg='grey')
 
-# menubar
+			# menubar
 
-		menubar = Menu(main_root)
+					menubar = Menu(main_root)
 
-		main_root.config(menu = menubar) 
-		global label,label100
-		label = Label(main_root, text="Welcome to Challenge Your Knowledge App", font=('Times New Roman',  '60'), fg="black", bg="grey")
-		label.place(relx = 0.5,  rely = 0.5, anchor = 's') 
-		label100 = Label(main_root, text='New user select register from Menu else Select login', font=('Times New Roman',  '20'), fg="black", bg="grey")
-		label100.place(relx = 0.5,  rely = 0.5, anchor = 'n') 
-# load menu
-		menu_load(username)
-       
- 
-## Destroy the window at the end 
-		main_root.mainloop()
+					main_root.config(menu = menubar) 
+					global label,label100
+					label = Label(main_root, text="Welcome to Challenge Your Knowledge App", font=('Times New Roman',  '60'), fg="black", bg="grey")
+					label.place(relx = 0.5,  rely = 0.5, anchor = 's') 
+					label100 = Label(main_root, text='New user select register from Menu else Select login', font=('Times New Roman',  '20'), fg="black", bg="grey")
+					label100.place(relx = 0.5,  rely = 0.5, anchor = 'n') 
+			# load menu
+					menu_load(username)
+
+
+			## Destroy the window at the end 
+					main_root.mainloop()
 
 Sample output:  
 ![image](https://user-images.githubusercontent.com/98585901/203063453-99334443-2175-40f6-bfc9-c467fa09c4af.png)
@@ -302,60 +342,60 @@ List of database tables used in this module:
 Code: 
 
 Function to create the registration window in tkinter
-###################################################
-Function to create registration  window using tkinter 
-###################################################
+		###################################################
+		Function to create registration  window using tkinter 
+		###################################################
 
 
-		def register_form():
-			label.destroy()
-			label100.destroy()
+				def register_form():
+					label.destroy()
+					label100.destroy()
 
-			clearFrame()
-			global root1
-			root1 =frame
-			
-			# label to display the heading "registration form"
-			
-			label_reg_0 = Label(root1, text="Registration form",width=20,font=("bold", 40),bg='grey', fg="white")
-			label_reg_0.place(x=90,y=53)
-			# label to display the word username
-			
-			label_reg_1 = Label(root1, text="*Username",width=20,font=("bold", 20),bg='grey', fg="white")
-			label_reg_1.place(x=70,y=130)
-			# entry box to get the input for username as given by user during registration 
-			
-			global entry_reg_1
-			entry_reg_1 = Entry(root1,width=20,bg='grey', fg="white")
-			entry_reg_1.place(x=300,y=130)
-			label_reg_2 = Label(root1, text="Email",width=20,font=("bold", 20),bg='grey', fg="white")
-			label_reg_2.place(x=68,y=180)
-			global entry_reg_2
-			entry_reg_2 = Entry(root1,width=20,bg='grey', fg="white")
-			entry_reg_2.place(x=300,y=180)
-			label_reg_3 = Label(root1, text="Gender",width=20,font=("bold", 20),bg='grey', fg="white")
-			label_reg_3.place(x=70,y=230)
-			global var
-			var = IntVar()
-			r1= Radiobutton(root1, text="Male",padx = 5, variable=var, value=1)
-			r1.place(x=300,y=230)
-			r2=Radiobutton(root1, text="Female",padx = 20, variable=var, value=2)
-			r2.place(x=370,y=230)
-			label__reg_4 = Label(root1, text="Age:",width=20,font=("bold", 20),bg='grey', fg="white")
-			label__reg_4.place(x=70,y=280)
-			global entry_reg_4
-			entry_reg_4 = Entry(root1,width=20,bg='grey', fg="white")
-			entry_reg_4.place(x=300,y=280)
+					clearFrame()
+					global root1
+					root1 =frame
 
-			label__reg_5= Label(root1, text="*Password:",width=20,font=("bold", 20),bg='grey', fg="white")
-			label__reg_5.place(x=70,y=310)
-			global entry_reg_5
-			entry_reg_5 = Entry(root1,width=20,bg='grey', fg="white")
-			entry_reg_5.place(x=300,y=310)
+					# label to display the heading "registration form"
 
-			btn1=Button(root1, text='Submit', width=20,bg='yellow', fg='red')
-			btn1.place(x=180,y=380)
-			btn1.bind('<Button-1>', onclick1_register)
+					label_reg_0 = Label(root1, text="Registration form",width=20,font=("bold", 40),bg='grey', fg="white")
+					label_reg_0.place(x=90,y=53)
+					# label to display the word username
+
+					label_reg_1 = Label(root1, text="*Username",width=20,font=("bold", 20),bg='grey', fg="white")
+					label_reg_1.place(x=70,y=130)
+					# entry box to get the input for username as given by user during registration 
+
+					global entry_reg_1
+					entry_reg_1 = Entry(root1,width=20,bg='grey', fg="white")
+					entry_reg_1.place(x=300,y=130)
+					label_reg_2 = Label(root1, text="Email",width=20,font=("bold", 20),bg='grey', fg="white")
+					label_reg_2.place(x=68,y=180)
+					global entry_reg_2
+					entry_reg_2 = Entry(root1,width=20,bg='grey', fg="white")
+					entry_reg_2.place(x=300,y=180)
+					label_reg_3 = Label(root1, text="Gender",width=20,font=("bold", 20),bg='grey', fg="white")
+					label_reg_3.place(x=70,y=230)
+					global var
+					var = IntVar()
+					r1= Radiobutton(root1, text="Male",padx = 5, variable=var, value=1)
+					r1.place(x=300,y=230)
+					r2=Radiobutton(root1, text="Female",padx = 20, variable=var, value=2)
+					r2.place(x=370,y=230)
+					label__reg_4 = Label(root1, text="Age:",width=20,font=("bold", 20),bg='grey', fg="white")
+					label__reg_4.place(x=70,y=280)
+					global entry_reg_4
+					entry_reg_4 = Entry(root1,width=20,bg='grey', fg="white")
+					entry_reg_4.place(x=300,y=280)
+
+					label__reg_5= Label(root1, text="*Password:",width=20,font=("bold", 20),bg='grey', fg="white")
+					label__reg_5.place(x=70,y=310)
+					global entry_reg_5
+					entry_reg_5 = Entry(root1,width=20,bg='grey', fg="white")
+					entry_reg_5.place(x=300,y=310)
+
+					btn1=Button(root1, text='Submit', width=20,bg='yellow', fg='red')
+					btn1.place(x=180,y=380)
+					btn1.bind('<Button-1>', onclick1_register)
 
 
 
